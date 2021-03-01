@@ -1,0 +1,40 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "phone": "081214186000",
+            "email": "",
+            "username": "ryandefryan",
+            "password": "123123123",
+            "roles": "user"
+        },
+        {
+            "id": 2,
+            "phone": "",
+            "email": "ryan.fandy@gmail.com",
+            "username": "nayr20",
+            "password": "321321321",
+            "roles": "user"
+        }
+    ],
+
+    "products": [
+        {
+            "id": 1,
+            "name": "Sofa Ruang Tamu",
+            "brand": "Olympic",
+            "category": "Sofa",
+            "stock": 20,
+            "price": 2500000,
+            "diskon": 10,
+            "weight": 3000,
+            "image1": "",
+            "image2": "",
+            "image3": ""
+        }
+    ],
+
+    "carts": [],
+    
+    "transactions": []
+}
