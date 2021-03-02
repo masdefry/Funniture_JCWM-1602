@@ -5,6 +5,8 @@
     --dark: #252525;
     --light: #f1f1f1;
     --danger: #ec4646;
+    --light-grey: #f4f9f9;
+    --dark-grey: #dddddd;
 }
 
 /* Background Color */
@@ -30,6 +32,14 @@
 
 .funniture-bg-danger{
     background-color: var(--danger);
+}
+
+.funniture-bg-light-grey{
+    background-color: var(--light-grey);
+}
+
+.funniture-bg-dark-grey{
+    background-color: var(--dark-grey);
 }
 
 
@@ -86,6 +96,10 @@
     font-size: 20px;
 }
 
+.funniture-font-size-22{
+    font-size: 22px;
+}
+
 .funniture-font-size-25{
     font-size: 25px;
 }
@@ -96,6 +110,10 @@
 
 .funniture-font-size-35{
     font-size: 35px;
+}
+
+.funniture-font-size-70{
+    font-size: 70px;
 }
 
 
