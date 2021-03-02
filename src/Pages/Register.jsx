@@ -4,13 +4,27 @@ import EmailValidator from './../Supports/Functions/Email'
 
 export default class Register extends React.Component{
 
+    state = {
+        error: null
+    }
+
     submitRegister = () => {
         let inputUser = this.refs.inputUser.value
 
         if(inputUser[0] == 0){
-            console.log(PhoneNumberValidator(inputUser))
+            let resultPhoneValidator = PhoneNumberValidator(inputUser)
+            console.log(resultPhoneValidator)
+
+            if(resultPhoneValidator !== true){
+                this.setState({error: resultPhoneValidator})
+            }
         }else{
-            console.log(EmailValidator(inputUser))
+            let resultEmailValidator = EmailValidator(inputUser)
+            console.log(resultEmailValidator)
+
+            if(resultEmailValidator !== true){
+                this.setState({error: 'Emial Tidak Sesuai'})
+            }
         }
 
     }
@@ -24,6 +38,14 @@ export default class Register extends React.Component{
                     </h1>
                     <input type='text' ref='inputUser' placeholder='Enter your phone number / email' className='form form-control' />
                     <input type='button' value='Register' onClick={this.submitRegister} />
+                    <p>
+                        {
+                            this.state.error?
+                                this.state.error
+                            :
+                                null
+                        }
+                    </p>
                 </div>
             </div>
         )
