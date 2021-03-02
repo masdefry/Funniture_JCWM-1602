@@ -3,19 +3,23 @@
 // 2. Nomor memiliki panjang minimal 9 digit & panjang maksimal 12 digit
 
 function PhoneNumberValidator(inputPhoneNumber){
-    let inputPhoneNumberStr = inputPhoneNumber.toString()
+    if(inputPhoneNumber[0] !== '0'){
+        return 'Nomor Harus Diawali Dengan 0'
+    } 
 
-    if(inputPhoneNumberStr[0] !== '6' && inputPhoneNumberStr[1] !== '2') return 'Nomor Harus Diawali Dengan 62' 
-
-    if(inputPhoneNumberStr.length >= 9 && inputPhoneNumberStr.length <= 13){{
-        for(let i = 0; i < inputPhoneNumberStr.length; i++){
-            if(Number(inputPhoneNumberStr[i]) <= 0){
+    if(inputPhoneNumber.length >= 9 && inputPhoneNumber.length <= 12){
+        for(let i = 0; i < inputPhoneNumber.length; i++){
+            if(!(inputPhoneNumber[i] >= 0)){
                 return 'Nomor Harus Berupa Angka'
-            }else if(inputPhoneNumberStr[i] === ' '){
-                return 'Nomor Tanpas Menggunakan Spasi'
+            }else if(inputPhoneNumber[i] == ' '){
+                return 'Nomor Tanpa Spasi'
             }
         }
-    }}
+    }else{
+        return 'Nomor Harus 9-12 Digit'
+    }
+
+    return true
 }
 
-console.log(PhoneNumberValidator('628121186000'))
+export default PhoneNumberValidator
