@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag, faHeart, faUser, faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,7 +30,11 @@ export default class Navbar extends React.Component{
                     <div className='container'>
                         <div className='row align-items-center' style={{height: '65px'}}>
                             <div className='col-2'>
-                                <span className='font-weight-bold funniture-font-size-30'>funniture</span>
+                                <span className='font-weight-bold funniture-font-size-30'>
+                                    <Link to='/' className='funniture-link'>
+                                        funniture
+                                    </Link>
+                                </span>
                             </div>
                             <div className='col-5 d-none d-md-block'>
                                 <span className='ml-3 funniture-font-size-18'>Products</span>

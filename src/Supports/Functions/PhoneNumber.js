@@ -11,7 +11,7 @@ function PhoneNumberValidator(inputPhoneNumber){
         for(let i = 0; i < inputPhoneNumber.length; i++){
             if(!(inputPhoneNumber[i] >= 0)){
                 return 'Nomor Harus Berupa Angka'
-            }else if(inputPhoneNumber[i] == ' '){
+            }else if(inputPhoneNumber[i] === ' '){
                 return 'Nomor Tanpa Spasi'
             }
         }

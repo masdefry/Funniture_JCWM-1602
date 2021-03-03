@@ -24,7 +24,7 @@ function EmailValidator(inputEmail){
 
     if(hostingEmailSplit.length <= 1) return false
     for(let i = 0; i < hostingEmailSplit.length; i++){
-        if(hostingEmailSplit[i] == '' || hostingEmailSplit[i] === ' '){
+        if(hostingEmailSplit[i] === '' || hostingEmailSplit[i] === ' '){
             return false
         }
     }
