@@ -1,11 +1,15 @@
 import React from 'react';
 import PhoneNumberValidator from './../Supports/Functions/PhoneNumber'
 import EmailValidator from './../Supports/Functions/Email'
+import Axios from 'axios';
+import LinkAPI from './../Supports/Constants/LinkAPI'
 
 export default class Register extends React.Component{
 
     state = {
-        error: null
+        error: null,
+        phoneNumber: null,
+        email: null
     }
 
     submitRegister = () => {
@@ -20,7 +24,7 @@ export default class Register extends React.Component{
                 if(resultPhoneValidator !== true){
                     this.setState({error: resultPhoneValidator})
                 }else{
-                    this.setState({error: null})
+                    this.setState({error: null, phoneNumber: inputUser})
                 }
             }else{
                 // Apabila user masukan SELAIN angka, maka bakalan menjalankan Email Validation
@@ -30,11 +34,55 @@ export default class Register extends React.Component{
                 if(resultEmailValidator !== true){
                     this.setState({error: 'Email Tidak Sesuai'})
                 }else{
-                    this.setState({error: null})
+                    this.setState({error: null, email: inputUser})
                 }
             }
         }else{
             this.setState({error: 'Isi Semua Data'})
+        }
+    }
+
+    sendDataToAPI = () => {
+        // Apabila state phone number ada
+        if(this.state.phoneNumber !== null){
+            Axios.get(LinkAPI + '?phone=' + this.state.phoneNumber)
+            .then((res) => {
+                if(res.data.length === 1){
+                    this.setState({error: 'Nomor Sudah Terdaftar'})
+                }else{
+                    Axios.post(LinkAPI, {phone: this.state.phoneNumber, email: '', username: '', password: '', roles: 'user'})
+                    .then((res) => {
+                        console.log(res)
+                        window.location = '/create-password'
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }else if(this.state.email !== null){
+             // Apabila state email ada
+             Axios.get(LinkAPI + '?email=' + this.state.email)
+             .then((res) => {
+                 if(res.data.length === 1){
+                     this.setState({error: 'Email Sudah Terdaftar'})
+                 }else{
+                    Axios.post(LinkAPI, {phone: '', email: this.state.email, username: '', password: '', roles: 'user'})
+                    .then((res) => {
+                        console.log(res)
+                        window.location = '/create-password'
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+                 }
+             })
+             .catch((err) => {
+                 console.log(err)
+             })
         }
     }
 
@@ -55,7 +103,7 @@ export default class Register extends React.Component{
                                     null
                             }
                         </p>
-                        <input type='button' value='Register Account' className='btn btn-dark w-100 mt-3' onClick={this.submitRegister} />
+                        <input type='button' value='Register Account' className='btn btn-dark w-100 mt-3' onClick={this.sendDataToAPI} />
                     </div>
                 </div>
             </div>

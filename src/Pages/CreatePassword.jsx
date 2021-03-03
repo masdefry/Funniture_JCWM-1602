@@ -6,7 +6,8 @@ export default class CreatePassword extends React.Component{
 
     state = {
         usernameAvaliable: null,
-        error: null
+        error: null,
+        passwordMatch: null
     }
 
     usernameValidation = (event) => {
@@ -14,6 +15,7 @@ export default class CreatePassword extends React.Component{
 
         Axios.get(LinkAPI + '?username=' + inputUsername)
         .then((res) => {
+            console.log(res)
             // Apabila datanya nggak ada, maka username available
             if(res.data.length === 0){
                 this.setState({usernameAvaliable: true, error: null})
@@ -27,6 +29,17 @@ export default class CreatePassword extends React.Component{
         })
     }
 
+    passwordValidation = () => {
+        let inputPassword = this.refs.inputPassword.value
+        let inputConfirmPassword = this.refs.inputConfirmPassword.value
+
+        if(inputPassword === inputConfirmPassword){
+            this.setState({passwordMatch: true, error: null})
+        }else{
+            this.setState({error: 'Password Tidak Sesuai'})
+        }
+    }
+
     render(){
         return(
             <div className='container'>
@@ -36,8 +49,8 @@ export default class CreatePassword extends React.Component{
                             Create Password
                         </h1>
                         <input type='text' placeholder='Enter your username' className='form form-control' onChange={this.usernameValidation} />
-                        <input type='text' ref='inputPassword' placeholder='Password' className='form form-control my-3' />
-                        <input type='text' ref='inputConfirmPassword' placeholder='Confirm password' className='form form-control' />
+                        <input type='text' ref='inputPassword' placeholder='Password' className='form form-control my-3' onChange={this.passwordValidation} />
+                        <input type='text' ref='inputConfirmPassword' placeholder='Confirm password' className='form form-control' onChange={this.passwordValidation} />
                         <p className='text-warning funniture-font-size-18'>
                             {
                                 this.state.error?
