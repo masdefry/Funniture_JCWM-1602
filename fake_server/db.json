@@ -1,68 +1,20 @@
 {
   "users": [
     {
-      "id": 2,
-      "phone": "",
-      "email": "ryan.fandy@gmail.com",
-      "username": "nayr20",
+      "phone": "081214186000",
+      "email": "",
+      "username": "ryandefryan",
+      "password": "123123123",
+      "roles": "user",
+      "id": 1
+    },
+    {
+      "phone": "082222222",
+      "email": "",
+      "username": "muhammaddefryyy",
       "password": "321321321",
-      "roles": "user"
-    },
-    {
-      "phone": "",
-      "email": "ryan.fandy@gmail.co.id",
-      "username": "",
-      "password": "",
       "roles": "user",
-      "id": 3
-    },
-    {
-      "phone": "08121218484",
-      "email": "",
-      "username": "",
-      "password": "",
-      "roles": "user",
-      "id": 4
-    },
-    {
-      "phone": "04858878271",
-      "email": "",
-      "username": "",
-      "password": "",
-      "roles": "user",
-      "id": 5
-    },
-    {
-      "phone": "04594939123",
-      "email": "",
-      "username": "",
-      "password": "",
-      "roles": "user",
-      "id": 6
-    },
-    {
-      "phone": "0828274718",
-      "email": "",
-      "username": "ryan2020",
-      "password": "123123123",
-      "roles": "user",
-      "id": 7
-    },
-    {
-      "phone": "09292881281",
-      "email": "",
-      "username": "",
-      "password": "",
-      "roles": "user",
-      "id": 8
-    },
-    {
-      "phone": "08121494585",
-      "email": "",
-      "username": "yayayssnh",
-      "password": "123123123",
-      "roles": "user",
-      "id": 9
+      "id": 2
     }
   ],
   "products": [

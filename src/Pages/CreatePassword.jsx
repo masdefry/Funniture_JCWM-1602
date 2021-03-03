@@ -72,7 +72,7 @@ export default class CreatePassword extends React.Component{
 
         Axios.patch(LinkAPI + `/${id}`, dataToSend)
         .then((res) => {
-            console.log(res)
+            localStorage.setItem('id', res.data.id)
             window.location = '/'
         })
         .catch((err) => {

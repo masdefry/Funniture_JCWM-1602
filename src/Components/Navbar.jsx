@@ -2,8 +2,44 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag, faHeart, faUser, faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons';
+import LinkAPI from './../Supports/Constants/LinkAPI'
+import Axios from 'axios';
 
 export default class Navbar extends React.Component{
+
+    state = {
+        username: null
+    }
+
+    componentDidMount(){
+        this.getUsername()
+    }
+
+    getUsername = () => {
+        // Ambil ID dari local storage
+        let id = localStorage.getItem('id')
+
+        if(id){
+            Axios.get(LinkAPI + `/${id}`)
+            .then((res) => {
+                console.log(res)
+                this.setState({username: res.data.username})
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+    }
+
+    onLogout = () => {
+        let confirm = window.confirm('Anda Yakin Mau Logout?')
+
+        if(confirm){
+            localStorage.removeItem('id')
+            window.location = '/'
+        }
+    }
+
     render(){
         return(
             <>
@@ -43,6 +79,22 @@ export default class Navbar extends React.Component{
                             </div>
                             <div className='col-10 col-md-5'>
                                 <div className='d-flex justify-content-end align-items-center'>
+                                    <span className='funniture-font-size-18'>
+                                        {
+                                            this.state.username?
+                                                `Hello, ${this.state.username}`
+                                            :
+                                                null
+                                        }
+                                    </span>
+                                    <span className='ml-1 mr-3 font-weight-bold funniture-font-size-18 funniture-clickable-element' onClick={this.onLogout}>
+                                        {
+                                            this.state.username?
+                                                `/ Logout`
+                                            :
+                                                null
+                                        }
+                                    </span>
                                     <span className='d-none d-md-block'>
                                         <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
                                     </span>
