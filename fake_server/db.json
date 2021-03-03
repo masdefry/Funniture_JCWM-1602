@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "phone": "081214186000",
-      "email": "",
-      "username": "ryandefryan",
-      "password": "123123123",
-      "roles": "user"
-    },
-    {
       "id": 2,
       "phone": "",
       "email": "ryan.fandy@gmail.com",
@@ -25,7 +17,7 @@
       "id": 3
     },
     {
-      "phone": "081218782499",
+      "phone": "08121218484",
       "email": "",
       "username": "",
       "password": "",
@@ -33,20 +25,44 @@
       "id": 4
     },
     {
-      "phone": "",
-      "email": "ryan@gmail.com",
+      "phone": "04858878271",
+      "email": "",
       "username": "",
       "password": "",
       "roles": "user",
       "id": 5
     },
     {
-      "phone": "078728128121",
+      "phone": "04594939123",
       "email": "",
       "username": "",
       "password": "",
       "roles": "user",
       "id": 6
+    },
+    {
+      "phone": "0828274718",
+      "email": "",
+      "username": "ryan2020",
+      "password": "123123123",
+      "roles": "user",
+      "id": 7
+    },
+    {
+      "phone": "09292881281",
+      "email": "",
+      "username": "",
+      "password": "",
+      "roles": "user",
+      "id": 8
+    },
+    {
+      "phone": "08121494585",
+      "email": "",
+      "username": "yayayssnh",
+      "password": "123123123",
+      "roles": "user",
+      "id": 9
     }
   ],
   "products": [

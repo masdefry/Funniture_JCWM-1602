@@ -7,7 +7,27 @@ export default class CreatePassword extends React.Component{
     state = {
         usernameAvaliable: null,
         error: null,
-        passwordMatch: null
+        passwordMatch: null,
+        inputUsername: null,
+        inputPassword: null
+    }
+
+    
+    componentDidMount(){
+        console.log(this.props.location.pathname)
+        console.log(this.props.location.pathname.split('/')[2])
+    }
+
+    componentWillUnmount(){
+        let id = this.props.location.pathname.split('/')[2]
+        
+        Axios.delete(LinkAPI + `/${id}`)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     usernameValidation = (event) => {
@@ -18,7 +38,7 @@ export default class CreatePassword extends React.Component{
             console.log(res)
             // Apabila datanya nggak ada, maka username available
             if(res.data.length === 0){
-                this.setState({usernameAvaliable: true, error: null})
+                this.setState({usernameAvaliable: true, error: null, inputUsername: inputUsername})
             }else{
                 // Apabila datanya ada, maka username telah kepakai
                 this.setState({error: 'Username Telah Terpakai'})
@@ -34,10 +54,30 @@ export default class CreatePassword extends React.Component{
         let inputConfirmPassword = this.refs.inputConfirmPassword.value
 
         if(inputPassword === inputConfirmPassword){
-            this.setState({passwordMatch: true, error: null})
+            this.setState({passwordMatch: true, error: null, inputPassword: inputPassword})
         }else{
             this.setState({error: 'Password Tidak Sesuai'})
         }
+    }
+
+    submitRegister = () => {
+        // Ambil dulu ID dari url address
+        let id = this.props.location.pathname.split('/')[2]
+
+        // Data yg akan dikirim ke API
+        let dataToSend = {
+            username: this.state.inputUsername, 
+            password: this.state.inputPassword
+        }
+
+        Axios.patch(LinkAPI + `/${id}`, dataToSend)
+        .then((res) => {
+            console.log(res)
+            window.location = '/'
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     render(){

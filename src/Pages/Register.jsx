@@ -9,13 +9,15 @@ export default class Register extends React.Component{
     state = {
         error: null,
         phoneNumber: null,
-        email: null
+        email: null,
+        buttonDisabled: true
     }
+
 
     submitRegister = () => {
         let inputUser = this.refs.inputUser.value
 
-        if(inputUser){
+        if(inputUser){ // Apakah input user itu ada? Apakah user mengisi inputan?
             // Apabila user masukan angka, maka bakalan menjalankan Phone Validation
             if(inputUser[0] >= 0){
                 let resultPhoneValidator = PhoneNumberValidator(inputUser)
@@ -52,8 +54,8 @@ export default class Register extends React.Component{
                 }else{
                     Axios.post(LinkAPI, {phone: this.state.phoneNumber, email: '', username: '', password: '', roles: 'user'})
                     .then((res) => {
-                        console.log(res)
-                        window.location = '/create-password'
+                        console.log(res.data.id)
+                        window.location = `/create-password/${res.data.id}`
                     })
                     .catch((err) => {
                         console.log(err)
