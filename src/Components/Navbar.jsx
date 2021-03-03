@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag, faHeart, faUser, faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons';
 import LinkAPI from './../Supports/Constants/LinkAPI'
 import Axios from 'axios';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default class Navbar extends React.Component{
 
     state = {
-        username: null
+        username: null,
+        showModal: false
     }
 
     componentDidMount(){
@@ -29,6 +31,10 @@ export default class Navbar extends React.Component{
                 console.log(err)
             })
         }
+    }
+
+    onLogin = () => {
+        // Axios.get
     }
 
     onLogout = () => {
@@ -95,7 +101,7 @@ export default class Navbar extends React.Component{
                                                 null
                                         }
                                     </span>
-                                    <span className='d-none d-md-block'>
+                                    <span className='d-none d-md-block' onClick={() => this.setState({showModal: true})}>
                                         <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
                                     </span>
                                     <span className='mx-3 d-none d-md-block'>
@@ -112,6 +118,27 @@ export default class Navbar extends React.Component{
                         </div>
                     </div>
                 </div>
+
+
+
+                {/* MODAL SECTION */}
+                <Modal toggle={() => this.setState({showModal: false})} isOpen={this.state.showModal}>
+                    <ModalHeader>Modal title</ModalHeader>
+                        <ModalBody>
+                            <div>
+                                <input type='text' placeholder='Masukan phone number / email' className='form form-control' />
+                            </div>
+                            <div>
+                                <input type='password' placeholder='Masukan password' className='form form-control' />
+                            </div>
+                            <div>
+                                <input type='button' value='Login' className='btn btn-warning' />
+                            </div>
+                        </ModalBody>
+                    <ModalFooter>
+                        
+                    </ModalFooter>
+                </Modal>
             </>
         )
     }

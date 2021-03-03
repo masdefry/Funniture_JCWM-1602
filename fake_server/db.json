@@ -15,6 +15,14 @@
       "password": "321321321",
       "roles": "user",
       "id": 2
+    },
+    {
+      "phone": "087822000888",
+      "email": "",
+      "username": "yayan20",
+      "password": "123123123",
+      "roles": "user",
+      "id": 3
     }
   ],
   "products": [
