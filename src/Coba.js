@@ -51,8 +51,53 @@ function getCatAndBrand(){
         }
     })
 
-    console.log(arrCategory)
-    console.log(arrBrand)
+    // console.log(arrCategory)
+    // console.log(arrBrand)
 }
 
 getCatAndBrand()
+
+
+
+function filterProducts(category, brand){
+    let filteredProducts = products.filter((value) => {
+        if(category === 'All' && brand === 'All'){
+            return products
+        }else if(category === 'All' && brand !== 'All'){
+            return value.brand === brand
+        }else if(category !== 'All' && brand === 'All'){
+            return value.category === category
+        }else if(category !== 'All' && brand !== 'All'){
+            return value.category === category && value.brand === brand
+        }
+    })
+
+    // console.log(filteredProducts)
+
+    let filteredProducts = []
+
+    products.forEach((value) => {
+        if(category === 'All' && brand === 'All'){
+            filteredProducts.push(value)
+        }else if(category === 'All' && brand !== 'All'){
+            if(value.brand === brand){
+                filteredProducts.push(value)
+            }
+        }else if(category !== 'All' && brand === 'All'){
+            if(value.category === category){
+                filteredProducts.push(value)
+            }
+        }else if(category !== 'All' && brand !== 'All'){
+            if(value.category === category && value.brand === brand){
+                filteredProducts.push(value)
+            }
+        }
+    })
+
+    console.log(filteredProducts)
+}
+
+filterProducts('All', 'All')
+filterProducts('All', 'Olympic')
+filterProducts('Sofa', 'All')
+filterProducts('Sofa', 'Lyon')

@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default class CatalogProducts extends React.Component{
 
     state = {
+        dataBackupProducts: null,
         dataProducts: null,
         showModal: false,
         allCategory: null,
@@ -19,7 +20,7 @@ export default class CatalogProducts extends React.Component{
     getDataProducts = () => {
         axios.get('http://localhost:2000/products')
         .then((res) => {
-            this.setState({dataProducts: res.data})
+            this.setState({dataProducts: res.data, dataBackupProducts: res.data})
         })
         .catch((err) => {
             console.log(err)
@@ -59,6 +60,26 @@ export default class CatalogProducts extends React.Component{
         .catch((err) => {
             console.log(err)
         })
+    }
+
+    filterData = () => {
+        let category = this.refs.selectCategory.value
+        let brand = this.refs.selectBrand.value
+
+        let filteredProducts = this.state.dataBackupProducts.filter((value) => {
+            if(category === 'All' && brand === 'All'){
+                return this.state.dataBackupProducts
+            }else if(category === 'All' && brand !== 'All'){
+                return value.brand === brand
+            }else if(category !== 'All' && brand === 'All'){
+                return value.category === category
+            }else if(category !== 'All' && brand !== 'All'){
+                return value.category === category && value.brand === brand
+            }
+        })
+
+        this.setState({dataProducts: filteredProducts})
+        this.setState({showModal: false})
     }
 
     render(){
@@ -127,12 +148,13 @@ export default class CatalogProducts extends React.Component{
                         </div>
                         <div className='mt-3'>
                             <label for="exampleFormControlSelect1">Category</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select ref='selectCategory' class="form-control" id="exampleFormControlSelect1">
+                                <option value='All'>All</option>
                                 {
                                     this.state.allCategory?
                                         this.state.allCategory.map((value, index) => {
                                             return(
-                                                <option key={index}>{value}</option>
+                                                <option value={value} key={index}>{value}</option>
                                             )
                                         })
                                     :
@@ -142,12 +164,13 @@ export default class CatalogProducts extends React.Component{
                         </div>
                         <div className='my-4'>
                             <label for="exampleFormControlSelect1">Brand</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select ref='selectBrand' class="form-control" id="exampleFormControlSelect1">
+                                <option value='All'>All</option>
                                 {
                                     this.state.allBrand?
                                         this.state.allBrand.map((value, index) => {
                                             return(
-                                                <option key={index}>{value}</option>
+                                                <option value={value} key={index}>{value}</option>
                                             )
                                         })
                                     :
@@ -156,7 +179,7 @@ export default class CatalogProducts extends React.Component{
                                 </select>
                         </div>
                         <div>
-                            <input type='button' value='Filter Data' className='btn btn-warning w-100' />
+                            <input type='button' value='Filter Data' className='btn btn-warning w-100' onClick={this.filterData} />
                         </div>
                     </ModalBody>
                 </Modal>
