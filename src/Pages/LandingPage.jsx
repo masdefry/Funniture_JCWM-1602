@@ -52,76 +52,80 @@ export default class LandingPage extends React.Component{
                         <input type='button' className='btn btn-warning' value='Shop Now!' />
                     </div>
                 </div>
-                <div className='container text-center mt-5' style={{height: '300px', marginBottom: '350px'}}>
-                    <h1>
-                        Spesial Furniture Pilihan Dari Kami
-                    </h1>
-                    <p className='funniture-font-size-20'>
-                        Dapatkan Furniture Pilihan Sesuai Dengan #NyamannyaKamu
-                    </p>
-                    {
-                        this.state.dataFlashSale?
-                            <>
-                                <Slider {...settingsDesktop} className='d-none d-md-block'>
-                                    {
-                                        this.state.dataFlashSale.map((value, index) => {
-                                            return(
-                                                value.diskon?
-                                                    <div className='px-3 py-3'>
-                                                        <div className='bg bg-primary'>
-                                                            <img src={value.image1} style={{width: '100%', height: '150px'}} />
+                <div className='container text-center mt-5' style={{height: '300px', marginBottom: '135px'}}>
+                    <div className="row justify-content-center">
+                        <div className="col-11 col-md-12">
+                            <h1>
+                                Spesial Furniture Pilihan Dari Kami
+                            </h1>
+                            <p className='funniture-font-size-20'>
+                                Dapatkan Furniture Pilihan Sesuai Dengan #NyamannyaKamu
+                            </p>
+                            {
+                                this.state.dataFlashSale?
+                                    <>
+                                        <Slider {...settingsDesktop} className='d-none d-md-block'>
+                                            {
+                                                this.state.dataFlashSale.map((value, index) => {
+                                                    return(
+                                                        value.diskon?
+                                                            <div className='px-3 py-3'>
+                                                                <div className='bg bg-primary'>
+                                                                    <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
+                                                                </div>
+                                                                <div className='text-left'>
+                                                                    <h5>
+                                                                        {value.name}
+                                                                    </h5>
+                                                                </div>
+                                                                <div className='text-left'>
+                                                                    <h5>
+                                                                        Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+                                                        :
+                                                            null
+                                                    )
+                                                })
+                                            }
+                                        </Slider>
+                                        <Slider {...settingsMobile} className='d-block d-md-none'>
+                                        {
+                                            this.state.dataFlashSale.map((value, index) => {
+                                                return(
+                                                    value.diskon?
+                                                        <div className='px-3 py-3'>
+                                                            <div className='bg bg-primary'>
+                                                                <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
+                                                            </div>
+                                                            <div className='text-left'>
+                                                                <h5>
+                                                                    {value.name}
+                                                                </h5>
+                                                            </div>
+                                                            <div className='text-left'>
+                                                                <h5>
+                                                                    Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
+                                                                </h5>
+                                                            </div>
                                                         </div>
-                                                        <div className='text-left'>
-                                                            <h5>
-                                                                {value.name}
-                                                            </h5>
-                                                        </div>
-                                                        <div className='text-left'>
-                                                            <h5>
-                                                                Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                :
-                                                    null
-                                            )
-                                        })
-                                    }
-                                </Slider>
-                                <Slider {...settingsMobile} className='d-block d-md-none'>
-                                {
-                                    this.state.dataFlashSale.map((value, index) => {
-                                        return(
-                                            value.diskon?
-                                                <div className='px-3 py-3'>
-                                                    <div className='bg bg-primary'>
-                                                        <img src={value.image1} style={{width: '100%', height: '150px'}} />
-                                                    </div>
-                                                    <div className='text-left'>
-                                                        <h5>
-                                                            {value.name}
-                                                        </h5>
-                                                    </div>
-                                                    <div className='text-left'>
-                                                        <h5>
-                                                            Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            :
-                                                null
-                                        )
-                                    })
-                                }
-                            </Slider>
-                            </>
-                        :
-                            <div>
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div>
-                    }
+                                                    :
+                                                        null
+                                                )
+                                            })
+                                        }
+                                    </Slider>
+                                    </>
+                                :
+                                    <div>
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         )

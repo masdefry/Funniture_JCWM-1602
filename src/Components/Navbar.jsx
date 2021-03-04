@@ -24,7 +24,6 @@ export default class Navbar extends React.Component{
         if(id){
             Axios.get(LinkAPI + `/${id}`)
             .then((res) => {
-                console.log(res)
                 this.setState({username: res.data.username})
             })
             .catch((err) => {
@@ -102,7 +101,7 @@ export default class Navbar extends React.Component{
                                 </span>
                             </div>
                             <div className='col-5 d-none d-md-block'>
-                                <span className='ml-3 funniture-font-size-18'>Products</span>
+                                <span className='ml-3 funniture-font-size-18'><Link to='/products' className='funniture-link'>Products</Link></span>
                                 <span className='mx-3 funniture-font-size-18'>Showroom</span>
                                 <span className='funniture-font-size-18'>Sale</span>
                             </div>

@@ -10,6 +10,7 @@ import Footer from './Components/Footer'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Register from './Pages/Register'
 import CreatePassword from './Pages/CreatePassword'
+import CatalogProducts from './Pages/CatalogProducts'
 
 export default class App extends React.Component{
   render(){
@@ -21,6 +22,7 @@ export default class App extends React.Component{
             <Route exact path='/' component={LandingPage} />
             <Route path='/register' component={Register} />
             <Route path='/create-password' component={CreatePassword} />
+            <Route path='/products' component={CatalogProducts} />
           </Switch>
           <Footer />
         </BrowserRouter>
