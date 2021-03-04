@@ -124,9 +124,16 @@ export default class Navbar extends React.Component{
                                                 null
                                         }
                                     </span>
-                                    <span className='d-none d-md-block' onClick={() => this.setState({showModal: true})}>
-                                        <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
-                                    </span>
+                                    {
+                                        this.state.username?
+                                            <span className='d-none d-md-block'>
+                                                <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
+                                            </span>
+                                        :
+                                            <span className='d-none d-md-block' onClick={() => this.setState({showModal: true})}>
+                                                <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
+                                            </span>
+                                    }
                                     <span className='mx-3 d-none d-md-block'>
                                         <FontAwesomeIcon icon={faHeart} className='funniture-font-size-22' />
                                     </span>
