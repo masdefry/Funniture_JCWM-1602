@@ -34,7 +34,30 @@ export default class Navbar extends React.Component{
     }
 
     onLogin = () => {
-        // Axios.get
+        let inputLogin = this.refs.inputLogin.value
+        let inputPasswordLogin = this.refs.inputPasswordLogin.value
+        let inputLoginType = ''
+
+        if(inputLogin[0] >= 0){
+            inputLoginType = 'phone'
+        }else{
+            inputLoginType = 'email'
+        }
+
+        Axios.get(LinkAPI + `?${inputLoginType}=${inputLogin}&password=${inputPasswordLogin}`)
+        .then((res) => {
+            if(res.data.length === 1){
+                alert('Login Berhasil')
+                localStorage.setItem('id', res.data[0].id)
+                this.setState({showModal: false})
+                window.location = '/'
+            }else if(res.data.length !== 1){
+                alert('User & Password Tidak Ditemukan')
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     onLogout = () => {
@@ -123,21 +146,27 @@ export default class Navbar extends React.Component{
 
                 {/* MODAL SECTION */}
                 <Modal toggle={() => this.setState({showModal: false})} isOpen={this.state.showModal}>
-                    <ModalHeader>Modal title</ModalHeader>
-                        <ModalBody>
-                            <div>
-                                <input type='text' placeholder='Masukan phone number / email' className='form form-control' />
-                            </div>
-                            <div>
-                                <input type='password' placeholder='Masukan password' className='form form-control' />
-                            </div>
-                            <div>
-                                <input type='button' value='Login' className='btn btn-warning' />
-                            </div>
-                        </ModalBody>
-                    <ModalFooter>
-                        
-                    </ModalFooter>
+                    <ModalBody className='px-5 py-5'>
+                        <div className='text-center'>
+                            <h3>
+                                Login Account
+                            </h3>
+                        </div>
+                        <div className='mt-5'>
+                            <input type='text' ref='inputLogin' placeholder='Phone Number / Email' className='form form-control' />
+                        </div>
+                        <div className='my-4'>
+                            <input type='password' ref='inputPasswordLogin' placeholder='Password' className='form form-control' />
+                        </div>
+                        <div>
+                            <input type='button' value='Login' className='btn btn-warning w-100' onClick={this.onLogin} />
+                        </div>
+                        <div className='mt-5 text-center'>
+                            <p>
+                                Don't have account? <Link to='/register'><span className='font-weight-bold'>Register here.</span></Link>
+                            </p>
+                        </div>
+                    </ModalBody>
                 </Modal>
             </>
         )
