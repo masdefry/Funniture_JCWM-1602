@@ -9,7 +9,8 @@ export default class CatalogProducts extends React.Component{
         dataProducts: null,
         showModal: false,
         allCategory: null,
-        allBrand: null
+        allBrand: null,
+        showModalSort: null
     }
 
     componentDidMount(){
@@ -82,6 +83,27 @@ export default class CatalogProducts extends React.Component{
         this.setState({showModal: false})
     }
 
+    sortData = () => {
+        let sort = this.refs.selectSort.value
+        let sortProducts
+
+        if(sort === 'Low To Hight'){
+            sortProducts = this.state.dataBackupProducts.sort((a, b) => {
+                return a.price - b.price
+            })
+        }else if(sort === 'Hight To Low'){
+            sortProducts = this.state.dataBackupProducts.sort((a, b) => {
+                return b.price - a.price
+            })
+        }else{
+            sortProducts = this.state.dataBackupProducts.sort((a, b) => {
+                return a.price - b.price
+            })
+        }
+
+        this.setState({dataProducts: sortProducts})
+    }
+
     render(){
         return(
             <div>
@@ -92,23 +114,23 @@ export default class CatalogProducts extends React.Component{
 
                 {/* FILTER SECTION */}
                 <div className='container'>
-                    <div className="row my-5">
-                        <div className="col-12">
+                    <div className="row justify-content-center justify-content-md-start my-5">
+                        <div className="col-10 col-md-12">
                             <button type="button" class="btn btn-outline-warning" onClick={() => this.setState({showModal: true})}>Filter</button>
-                            <button type="button" class="btn btn-outline-warning ml-3">Sort</button>
+                            <button type="button" class="btn btn-outline-warning ml-3" onClick={() => this.setState({showModalSort: true})}>Sort</button>
                         </div>
                     </div>
                 </div>
 
                 {/* CATALOG SECITON */}
                 <div className="container" style={{height: '100%'}}>
-                    <div className="row">
+                    <div className="row justify-content-center justify-content-md-start">
                         {
                             this.state.dataProducts?
                                 this.state.dataProducts.map((value, index) => {
                                     return(
                                         <>
-                                            <div className="col-4 px-3 py-3" key={index}>
+                                            <div className="col-10 col-md-4 px-3 py-3" key={index}>
                                                 <div>
                                                     <img src={value.image1} width='100%' height='150px' />
                                                 </div>
@@ -118,15 +140,16 @@ export default class CatalogProducts extends React.Component{
                                                     </h5>
                                                 </div>
                                                 <div>
-                                                    <h5>
-                                                        Rp.
-                                                        {
-                                                            value.diskon?
-                                                                (value.price - (value.price * (value.diskon / 100))).toLocaleString()
-                                                            :
-                                                                value.price.toLocaleString()
-                                                        }
-                                                    </h5>
+                                                    {
+                                                        value.diskon?
+                                                            <h5>
+                                                                {((value.price - (value.price * (value.diskon / 100))).toLocaleString())} <del>{value.price}</del>
+                                                            </h5>
+                                                        :
+                                                            <h5>
+                                                                {value.price}
+                                                            </h5>
+                                                    }
                                                 </div>
                                             </div>
                                         </>
@@ -138,7 +161,7 @@ export default class CatalogProducts extends React.Component{
                     </div>
                 </div>
 
-                {/* MODAL SECTION */}
+                {/* MODAL FILTER SECTION */}
                 <Modal toggle={() => this.setState({showModal: false})} isOpen={this.state.showModal}>
                     <ModalBody className='px-5 py-5'>
                         <div className='text-center'>
@@ -180,6 +203,28 @@ export default class CatalogProducts extends React.Component{
                         </div>
                         <div>
                             <input type='button' value='Filter Data' className='btn btn-warning w-100' onClick={this.filterData} />
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                {/* MODAL SORT SECTION */}
+                <Modal toggle={() => this.setState({showModalSort: false})} isOpen={this.state.showModalSort}>
+                    <ModalBody className='px-5 py-5'>
+                        <div className='text-center'>
+                            <h3>
+                                Sort Data
+                            </h3>
+                        </div>
+                        <div className='my-4'>
+                            <label for="exampleFormControlSelect1">Sort By</label>
+                            <select ref='selectSort' class="form-control" id="exampleFormControlSelect1">
+                                <option value='Low To Hight'>Low Price To Hight</option>
+                                <option value='Hight To Low'>Hight Price To Low</option>
+                                <option value='Default'>Default</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type='button' value='Sort Data' className='btn btn-warning w-100' onClick={this.sortData} />
                         </div>
                     </ModalBody>
                 </Modal>
