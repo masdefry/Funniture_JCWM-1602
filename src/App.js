@@ -11,6 +11,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Register from './Pages/Register'
 import CreatePassword from './Pages/CreatePassword'
 import CatalogProducts from './Pages/CatalogProducts'
+import DetailProduct from './Pages/DetailProduct'
 
 export default class App extends React.Component{
   render(){
@@ -23,6 +24,7 @@ export default class App extends React.Component{
             <Route path='/register' component={Register} />
             <Route path='/create-password' component={CreatePassword} />
             <Route path='/products' component={CatalogProducts} />
+            <Route path='/detail-product/:idProduct' component={DetailProduct} />
           </Switch>
           <Footer />
         </BrowserRouter>

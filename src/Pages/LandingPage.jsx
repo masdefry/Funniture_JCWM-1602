@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Axios from 'axios';
 import LinkAPI from './../Supports/Constants/LinkAPI'
+import { Link } from 'react-router-dom';
 
 export default class LandingPage extends React.Component{
 
@@ -70,15 +71,18 @@ export default class LandingPage extends React.Component{
                                                     return(
                                                         value.diskon?
                                                             <div className='px-3 py-3'>
-                                                                <div className='bg bg-primary'>
-                                                                    <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
+                                                                <div className='bg bg-primary position-relative'>
+                                                                    <Link to={`/detail-product/${value.id}`} >
+                                                                        <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
+                                                                    </Link>
+                                                                    <span className='position-absolute font-weight-bold funniture-bg-danger funniture-light' style={{top: '15px', left: '10px', borderRadius: '5px', width: '50px', height: '25px'}}>
+                                                                        {value.diskon}%
+                                                                    </span>
                                                                 </div>
                                                                 <div className='text-left'>
-                                                                    <h5>
+                                                                    <h5 className='funniture-third mt-2' style={{lineHeight: '10px'}}>
                                                                         {value.name}
                                                                     </h5>
-                                                                </div>
-                                                                <div className='text-left'>
                                                                     <h5>
                                                                         Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
                                                                     </h5>
