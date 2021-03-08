@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // ACTION REDUX
-import { CartAction } from './../Redux/Actions/CartAction'
+import { getDataCart } from './../Redux/Actions/CartAction'
 
 class DetailProduct extends React.Component{
 
@@ -69,6 +69,11 @@ class DetailProduct extends React.Component{
         //     console.log(err)
         // })
 
+        let idProduct = this.props.location.pathname.split('/')[2]
+        let idUser = localStorage.getItem('id')
+        let quantity = 1
+
+        this.props.getDataCart(idProduct, idUser, quantity)
 
     }
 
@@ -152,6 +157,6 @@ class DetailProduct extends React.Component{
     }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {getDataCart}
 
 export default connect('', mapDispatchToProps)(DetailProduct)

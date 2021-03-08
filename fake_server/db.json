@@ -198,34 +198,16 @@
   ],
   "carts": [
     {
-      "idProduct": "1",
+      "idProduct": "3",
       "idUser": "3",
-      "quantity": 2,
+      "quantity": 3,
       "id": 1
     },
     {
-      "idProduct": "13",
-      "idUser": "3",
-      "quantity": 6,
-      "id": 2
-    },
-    {
-      "idProduct": "5",
-      "idUser": "3",
-      "quantity": 2,
-      "id": 3
-    },
-    {
-      "idProduct": "10",
-      "idUser": "3",
-      "quantity": 2,
-      "id": 4
-    },
-    {
-      "idProduct": "4",
+      "idProduct": "2",
       "idUser": "3",
       "quantity": 1,
-      "id": 5
+      "id": 2
     }
   ],
   "transactions": []

@@ -5,18 +5,19 @@ import { faShoppingBag, faHeart, faUser, faSearchLocation, faBars } from '@forta
 import LinkAPI from './../Supports/Constants/LinkAPI'
 import Axios from 'axios';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { connect } from 'react-redux';
 
-export default class Navbar extends React.Component{
+class Navbar extends React.Component{
 
     state = {
         username: null,
         showModal: false,
-        totalCarts: 0
+        currentTotalCarts: 0
     }
 
     componentDidMount(){
         this.getUsername()
-        this.getTotalCarts()
+        this.getCurrentTotalCarts()
     }
 
     getUsername = () => {
@@ -70,12 +71,12 @@ export default class Navbar extends React.Component{
         }
     }
 
-    getTotalCarts = () => {
+    getCurrentTotalCarts = () => {
         let id = localStorage.getItem('id')
 
         Axios.get(`http://localhost:2000/carts?idUSer=${id}`)
         .then((res) => {
-            this.setState({totalCarts: res.data.length})
+            this.setState({currentTotalCarts: res.data.length})
         })
         .catch((err) => {
             console.log(err)
@@ -154,10 +155,10 @@ export default class Navbar extends React.Component{
                                         <FontAwesomeIcon icon={faShoppingBag} className='funniture-font-size-22' />
                                         <div className='text-center funniture-bg-light' style={{position: 'absolute', top: '-10px', left: '20px', width: '25px', borderRadius: '100%'}}>
                                             {
-                                                this.state.totalCarts?
-                                                    this.state.totalCarts
+                                                this.props.carts.data?
+                                                    this.props.carts.data.length
                                                 :
-                                                    0
+                                                    this.state.currentTotalCarts
                                             }
                                         </div>
                                     </span>
@@ -200,3 +201,11 @@ export default class Navbar extends React.Component{
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return{
+        carts: state.carts
+    }
+}
+
+export default connect(mapStateToProps, '')(Navbar)
