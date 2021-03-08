@@ -8,11 +8,27 @@ import { getDataCart } from './../Redux/Actions/CartAction'
 class DetailProduct extends React.Component{
 
     state = {
+        isUserLogin: null,
         dataDetailProduct: null,
         mainImage: null
     }
 
     componentDidMount(){
+        this.onCheckUserLogin()
+        this.getDataProduct()
+    }
+
+    onCheckUserLogin = () => {
+        let id = localStorage.getItem('id')
+
+        if(id){
+            this.setState({isUserLogin: true})
+        }else{
+            this.setState({isUserLogin: false})
+        }
+    }
+
+    getDataProduct = () => {
         let idProduct = this.props.location.pathname.split('/')[2]
 
         axios.get(`http://localhost:2000/products/${idProduct}`)
@@ -145,7 +161,14 @@ class DetailProduct extends React.Component{
                             </p>
                         </div>
                         <div className='mt-5'>
-                            <button type="button" class="w-100 btn btn-warning" onClick={this.addToCart}>Add To Cart</button>
+                            {
+                                this.state.isUserLogin?
+                                    <button type="button" class="w-100 btn btn-warning" onClick={this.addToCart}>Add To Cart</button>
+                                :
+                                    <div class="alert alert-warning" role="alert">
+                                        Login Terlebih Dahulu Untuk Mendapatkan Product Kedalam Cart!
+                                    </div>
+                            }
                         </div>
 
 

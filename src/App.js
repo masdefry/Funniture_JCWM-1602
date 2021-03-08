@@ -8,6 +8,7 @@ import Register from './Pages/Register'
 import CreatePassword from './Pages/CreatePassword'
 import CatalogProducts from './Pages/CatalogProducts'
 import DetailProduct from './Pages/DetailProduct'
+import Cart from './Pages/Cart'
 
 // CSS
 import './Supports/Stylesheets/Utils.css'
@@ -35,6 +36,7 @@ export default class App extends React.Component{
               <Route path='/create-password' component={CreatePassword} />
               <Route path='/products' component={CatalogProducts} />
               <Route path='/detail-product/:idProduct' component={DetailProduct} />
+              <Route path='/cart' component={Cart} />
             </Switch>
             <Footer />
           </BrowserRouter>
