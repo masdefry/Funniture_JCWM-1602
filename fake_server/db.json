@@ -220,6 +220,12 @@
       "idUser": "3",
       "quantity": 2,
       "id": 4
+    },
+    {
+      "idProduct": "4",
+      "idUser": "3",
+      "quantity": 1,
+      "id": 5
     }
   ],
   "transactions": []

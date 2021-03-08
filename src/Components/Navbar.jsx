@@ -150,16 +150,16 @@ export default class Navbar extends React.Component{
                                     <span className='mx-3 d-none d-md-block'>
                                         <FontAwesomeIcon icon={faHeart} className='funniture-font-size-22' />
                                     </span>
-                                    <span className='d-none d-md-block'>
+                                    <span className='d-none d-md-block position-relative'>
                                         <FontAwesomeIcon icon={faShoppingBag} className='funniture-font-size-22' />
-                                        <span className='funniture-bg-light' style={{width: '100px', borderRadius: '100%'}}>
+                                        <div className='text-center funniture-bg-light' style={{position: 'absolute', top: '-10px', left: '20px', width: '25px', borderRadius: '100%'}}>
                                             {
                                                 this.state.totalCarts?
                                                     this.state.totalCarts
                                                 :
                                                     0
                                             }
-                                        </span>
+                                        </div>
                                     </span>
                                     <span className='d-block d-md-none'>
                                         <FontAwesomeIcon icon={faBars} className='funniture-font-size-22' />

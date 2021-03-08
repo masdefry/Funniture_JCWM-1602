@@ -84,13 +84,13 @@ class DetailProduct extends React.Component{
                             </div>
                             
                             <div className="col-3 mt-4">
-                                <img src={this.state.dataDetailProduct.image1} className="img-fluid furniture-img-thumb" alt="" onClick={() => this.setState({mainImage: this.state.dataDetailProduct.image1})} />
+                                <img src={this.state.dataDetailProduct.image1} className={this.state.mainImage === this.state.dataDetailProduct.image1? 'img-fluid furniture-img-thumb border border-primary' : 'img-fluid furniture-img-thumb'} alt="" onClick={() => this.setState({mainImage: this.state.dataDetailProduct.image1})} />
                             </div>
                             <div className="col-3 mt-4">
-                                <img src={this.state.dataDetailProduct.image2} className="img-fluid furniture-img-thumb" alt="" onClick={() => this.setState({mainImage: this.state.dataDetailProduct.image2})}/>
+                                <img src={this.state.dataDetailProduct.image2} className={this.state.mainImage === this.state.dataDetailProduct.image2? 'img-fluid furniture-img-thumb border border-primary' : 'img-fluid furniture-img-thumb'} alt="" onClick={() => this.setState({mainImage: this.state.dataDetailProduct.image2})}/>
                             </div>
                             <div className="col-3 mt-4">
-                                <img src={this.state.dataDetailProduct.image3} className="img-fluid furniture-img-thumb" alt="" onClick={() => this.setState({mainImage: this.state.dataDetailProduct.image3})}/>
+                                <img src={this.state.dataDetailProduct.image3} className={this.state.mainImage === this.state.dataDetailProduct.image3? 'img-fluid furniture-img-thumb border border-primary' : 'img-fluid furniture-img-thumb'} alt="" onClick={() => this.setState({mainImage: this.state.dataDetailProduct.image3})}/>
                             </div>
                         </div>
                         
