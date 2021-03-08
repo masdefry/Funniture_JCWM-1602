@@ -7,7 +7,9 @@ export default class Cart extends React.Component{
 
     state = {
         dataCarts: null,
-        dataProducts: null
+        dataProducts: null,
+        totalItem: 0,
+        totalPrice: 0
     }
 
     componentDidMount(){
@@ -34,7 +36,8 @@ export default class Cart extends React.Component{
             axios.get(`http://localhost:2000/products?${linkURLToGetDataProduct}`)
             .then((res) => {
                 this.setState({dataProducts: res.data})
-                console.log(this.state.dataProducts)
+                
+                this.getOrderSummary()
             })
             .catch((err) => {
                 console.log(err)
@@ -44,6 +47,18 @@ export default class Cart extends React.Component{
         .catch((err) => {
             console.log(err)
         })
+    }
+
+    getOrderSummary = () => {
+        let totalItem = 0
+        let totalPrice = 0
+
+        this.state.dataCarts.forEach((value, index) => {
+            totalItem += value.quantity
+            totalPrice += this.state.dataProducts[index].price * value.quantity
+        })
+
+        this.setState({totalItem: totalItem, totalPrice: totalPrice})
     }
 
     updateQuantityProduct = (button, idCart, quantity) => {
@@ -170,15 +185,7 @@ export default class Cart extends React.Component{
                                                     Items Total
                                                 </div>
                                                 <div>
-                                                    Rp1.600.000
-                                                </div>
-                                            </div>
-                                            <div className ='d-flex justify-content-between my-2'>
-                                                <div>
-                                                    Shipping
-                                                </div>
-                                                <div>
-                                                    -
+                                                    {this.state.totalItem} Item
                                                 </div>
                                             </div>
                                             <hr/>
@@ -189,7 +196,7 @@ export default class Cart extends React.Component{
                                                 <h5>Order Total</h5>
                                             </div>
                                             <div>
-                                                <h5>Rp1.600.000</h5>
+                                                <h5>Rp{this.state.totalPrice.toLocaleString()}</h5>
                                             </div>
                                         </div> 
                                     </div> 
