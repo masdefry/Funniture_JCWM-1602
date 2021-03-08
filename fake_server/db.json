@@ -196,25 +196,6 @@
       "image3": "https://cdn-m2.fabelio.com/catalog/product/k/a/kabinetp_onyx_14_21_hires_1.jpg?auto=format&h=640&ixlib=react-9.0.3"
     }
   ],
-  "carts": [
-    {
-      "idProduct": "3",
-      "idUser": "3",
-      "quantity": 3,
-      "id": 1
-    },
-    {
-      "idProduct": "2",
-      "idUser": "3",
-      "quantity": 1,
-      "id": 2
-    },
-    {
-      "idProduct": "1",
-      "idUser": "3",
-      "quantity": 1,
-      "id": 3
-    }
-  ],
+  "carts": [],
   "transactions": []
 }

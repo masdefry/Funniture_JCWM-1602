@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import swal from 'sweetalert';
+
 export default class Cart extends React.Component{
 
     state = {
@@ -44,6 +46,59 @@ export default class Cart extends React.Component{
         })
     }
 
+    updateQuantityProduct = (button, idCart, quantity) => {
+        let quantitySebelumnya = quantity
+        let quantityTerbaru = 0
+
+        if(button === 'Plus'){
+            quantityTerbaru = quantitySebelumnya + 1
+        }else{
+            quantityTerbaru = quantitySebelumnya - 1
+        }
+        
+        axios.patch(`http://localhost:2000/carts/${idCart}`, {quantity: quantityTerbaru})
+        .then((res) => {
+            if(res.status === 200){
+                this.getDataCarts()
+            }
+        })  
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+    deleteProduct = (idCart) => {
+        swal({
+            title: "Are you sure want to delete this product?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if(willDelete){
+                axios.delete(`http://localhost:2000/carts/${idCart}`)
+                .then((res) => {
+                    swal({
+                        title: "Product delete succesfull!",
+                        icon: "success",
+                        button: "Ok",
+                    });
+
+                    this.getDataCarts()
+                })
+                .catch((err) => {
+                    swal({
+                        title: {err},
+                        icon: "cancel",
+                        button: "Ok",
+                    });
+                })
+            } else {
+              
+            }
+          });
+    }
+
     render(){
         if(this.state.dataCarts === null || this.state.dataProducts === null){
             return(
@@ -69,14 +124,30 @@ export default class Cart extends React.Component{
                                     {
                                         this.state.dataCarts.map((value, index) => {
                                             return(
-                                                <div className='row my-2'>
+                                                <div className='row my-5'>
                                                     <div className ='col-4 '>
-                                                        <img src='https://nodaheights.com/wp-content/uploads/2017/08/Furniture-Background-Image.jpg' className='ml-3' style={{height:'100%', width:'100%'}} />
+                                                        <img src={this.state.dataProducts[index].image1} className='ml-3' style={{height:'100%', width:'100%'}} />
                                                     </div>
                                                     <div className ='col-8'>
                                                         <div className='ml-3'>
                                                             <h4>{this.state.dataProducts[index].name}</h4>
                                                             <h5>Rp.{this.state.dataProducts[index].price.toLocaleString()}</h5>
+                                                        </div>
+                                                        <div>
+                                                            <button disabled={value.quantity === 1? true : false} className='btn btn-warning px-1' onClick={() => this.updateQuantityProduct('Minus', value.id, value.quantity)}>
+                                                                -
+                                                            </button>
+                                                            <span className='mx-4'>
+                                                                {value.quantity}
+                                                            </span>
+                                                            <button disabled={value.quantity === this.state.dataProducts[index].stock? true : false} className='btn btn-warning px-1' onClick={() => this.updateQuantityProduct('Plus', value.id, value.quantity)}>
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                        <div className='mt-3'>
+                                                            <button className='btn btn-danger px-1' onClick={() => this.deleteProduct(value.id)}>
+                                                                Delete
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>

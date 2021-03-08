@@ -152,15 +152,17 @@ class Navbar extends React.Component{
                                         <FontAwesomeIcon icon={faHeart} className='funniture-font-size-22' />
                                     </span>
                                     <span className='d-none d-md-block position-relative'>
-                                        <FontAwesomeIcon icon={faShoppingBag} className='funniture-font-size-22' />
-                                        <div className='text-center funniture-bg-light' style={{position: 'absolute', top: '-10px', left: '20px', width: '25px', borderRadius: '100%'}}>
-                                            {
-                                                this.props.carts.data?
-                                                    this.props.carts.data.length
-                                                :
-                                                    this.state.currentTotalCarts
-                                            }
-                                        </div>
+                                        <Link to='/cart'>
+                                            <FontAwesomeIcon icon={faShoppingBag} className='funniture-font-size-22' />
+                                            <div className='text-center funniture-bg-light' style={{position: 'absolute', top: '-10px', left: '20px', width: '25px', borderRadius: '100%'}}>
+                                                {
+                                                    this.props.carts.data?
+                                                        this.props.carts.data.length
+                                                    :
+                                                        this.state.currentTotalCarts
+                                                }
+                                            </div>
+                                        </Link>
                                     </span>
                                     <span className='d-block d-md-none'>
                                         <FontAwesomeIcon icon={faBars} className='funniture-font-size-22' />
