@@ -1,5 +1,9 @@
 import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux'
+
+// ACTION REDUX
+import { CartAction } from './../Redux/Actions/CartAction'
 
 class DetailProduct extends React.Component{
 
@@ -22,48 +26,50 @@ class DetailProduct extends React.Component{
     }
 
     addToCart = () => {
-        let idProduct = this.props.location.pathname.split('/')[2]
-        let idUser = localStorage.getItem('id')
+        // let idProduct = this.props.location.pathname.split('/')[2]
+        // let idUser = localStorage.getItem('id')
 
-        let dataToSend = {
-            idProduct: idProduct,
-            idUser: idUser,
-            quantity: 1
-        }
+        // let dataToSend = {
+        //     idProduct: idProduct,
+        //     idUser: idUser,
+        //     quantity: 1
+        // }
 
-        // Saya cek terlebih dahulu apakah product ini ada didalam data carts
-        axios.get(`http://localhost:2000/carts?idProduct=${idProduct}`)
-        .then((res) => {
-            if(res.data.length === 0){ // Apabila datanya belum ada didalam data carts
-                axios.post('http://localhost:2000/carts', dataToSend)
-                .then((res) => {
-                    console.log(res)
+        // // Saya cek terlebih dahulu apakah product ini ada didalam data carts
+        // axios.get(`http://localhost:2000/carts?idProduct=${idProduct}`)
+        // .then((res) => {
+        //     if(res.data.length === 0){ // Apabila datanya belum ada didalam data carts
+        //         axios.post('http://localhost:2000/carts', dataToSend)
+        //         .then((res) => {
+        //             console.log(res)
 
-                    let urlAddress = this.props.location.pathname
-                    window.location = urlAddress
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-            }else{ // Apabila datanya udah ada didalam data carts
-                let quantityOnDB = res.data[0].quantity
-                let idCart = res.data[0].id
+        //             let urlAddress = this.props.location.pathname
+        //             window.location = urlAddress
+        //         })
+        //         .catch((err) => {
+        //             console.log(err)
+        //         })
+        //     }else{ // Apabila datanya udah ada didalam data carts
+        //         let quantityOnDB = res.data[0].quantity
+        //         let idCart = res.data[0].id
                 
-                axios.patch(`http://localhost:2000/carts/${idCart}`, {quantity: quantityOnDB + 1})
-                .then((res) => {
-                    console.log(res)
+        //         axios.patch(`http://localhost:2000/carts/${idCart}`, {quantity: quantityOnDB + 1})
+        //         .then((res) => {
+        //             console.log(res)
 
-                    let urlAddress = this.props.location.pathname
-                    window.location = urlAddress
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-            }
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        //             let urlAddress = this.props.location.pathname
+        //             window.location = urlAddress
+        //         })
+        //         .catch((err) => {
+        //             console.log(err)
+        //         })
+        //     }
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
+
+
     }
 
     render(){
@@ -146,4 +152,6 @@ class DetailProduct extends React.Component{
     }
 }
 
-export default DetailProduct
+const mapDispatchToProps = {}
+
+export default connect('', mapDispatchToProps)(DetailProduct)

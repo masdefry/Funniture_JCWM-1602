@@ -14,21 +14,31 @@ import './Supports/Stylesheets/Utils.css'
 import './Supports/Stylesheets/LandingPage.css'
 import './Supports/Stylesheets/CatalogPage.css'
 
+// REDUX
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import allReducer from './Redux/Reducers/index'
+
+const store = createStore(allReducer, applyMiddleware(thunk))
+
 export default class App extends React.Component{
   render(){
     return(
       <>
-        <BrowserRouter>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route path='/register' component={Register} />
-            <Route path='/create-password' component={CreatePassword} />
-            <Route path='/products' component={CatalogProducts} />
-            <Route path='/detail-product/:idProduct' component={DetailProduct} />
-          </Switch>
-          <Footer />
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Navbar />
+            <Switch>
+              <Route exact path='/' component={LandingPage} />
+              <Route path='/register' component={Register} />
+              <Route path='/create-password' component={CreatePassword} />
+              <Route path='/products' component={CatalogProducts} />
+              <Route path='/detail-product/:idProduct' component={DetailProduct} />
+            </Switch>
+            <Footer />
+          </BrowserRouter>
+        </Provider>
       </>
     )
   }

@@ -2,7 +2,7 @@ let initialState = {
     data: null
 }
 
-function cartReducer(state = data, action){
+function cartReducer(state = initialState, action){
     switch(action.type){
         case 'GET_DATA_SUCCESS':
             return {data: action.payload}
