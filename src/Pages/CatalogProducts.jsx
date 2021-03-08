@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default class CatalogProducts extends React.Component{
@@ -106,21 +107,28 @@ export default class CatalogProducts extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className='mt-0 mb-5'>
                 {/* BANNER SECTION */}
-                <div className='bg-primary' style={{height: '300px'}}>
+                <div className='banner-catalog-product-page' style={{height: '300px'}}>
 
                 </div>
 
                 {/* FILTER SECTION */}
                 <div className='container'>
-                    <div className="row justify-content-center justify-content-md-start my-5">
+                    <div className="row justify-content-center justify-content-md-start mt-5 mb-3">
                         <div className="col-10 col-md-12">
-                            <button type="button" class="btn btn-outline-warning" onClick={() => this.setState({showModal: true})}>Filter</button>
-                            <button type="button" class="btn btn-outline-warning ml-3" onClick={() => this.setState({showModalSort: true})}>Sort</button>
+                            <button type="button" class="btn btn-outline-warning" style={{borderRadius: '50px'}} onClick={() => this.setState({showModal: true})}>Filter Products</button>
+                            <button type="button" class="btn btn-outline-warning ml-3" style={{borderRadius: '50px'}} onClick={() => this.setState({showModalSort: true})}>Sort Products</button>
                         </div>
                     </div>
+                    <div className='border-bottom'></div>
+                    <div className='mt-4'>
+                        <h6>
+                            1-10 dari 10 Pilihan
+                        </h6>
+                    </div>
                 </div>
+
 
                 {/* CATALOG SECITON */}
                 <div className="container" style={{height: '100%'}}>
@@ -131,23 +139,39 @@ export default class CatalogProducts extends React.Component{
                                     return(
                                         <>
                                             <div className="col-10 col-md-4 px-3 py-3" key={index}>
-                                                <div>
-                                                    <img src={value.image1} width='100%' height='150px' />
+                                                <div className='position-relative'>
+                                                    <Link to={`/detail-product/${value.id}`}>
+                                                        <img src={value.image1} width='100%' height='150px' style={{borderRadius: '5px'}} />
+                                                    </Link>
+                                                    {
+                                                        value.diskon?
+                                                            <span className='position-absolute text-center font-weight-bold funniture-bg-danger funniture-light' style={{top: '15px', left: '10px', borderRadius: '5px', width: '50px', height: '25px'}}>
+                                                                {value.diskon}%
+                                                            </span>
+                                                        :
+                                                            null
+                                                    }
                                                 </div>
-                                                <div>
-                                                    <h5>
+                                                <div className='text-left mt-4'>
+                                                    <h5 className='funniture-third mt-2' style={{lineHeight: '10px'}}>
                                                         {value.name}
                                                     </h5>
+                                                    <p className='funniture-font-size-14'>
+                                                        Category : {value.category}
+                                                    </p>
                                                 </div>
                                                 <div>
                                                     {
                                                         value.diskon?
-                                                            <h5>
-                                                                {((value.price - (value.price * (value.diskon / 100))).toLocaleString())} <del>{value.price}</del>
+                                                            <h5  style={{lineHeight: '10px'}}>
+                                                                Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} 
+                                                                <span className='ml-2 funniture-font-size-18 funniture-danger'>
+                                                                    <del>Rp.{value.price.toLocaleString()}</del>
+                                                                </span>
                                                             </h5>
                                                         :
-                                                            <h5>
-                                                                {value.price}
+                                                            <h5  style={{lineHeight: '5px'}}>
+                                                                Rp.{value.price.toLocaleString()}
                                                             </h5>
                                                     }
                                                 </div>

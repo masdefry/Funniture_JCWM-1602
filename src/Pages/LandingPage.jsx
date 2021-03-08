@@ -53,7 +53,7 @@ export default class LandingPage extends React.Component{
                         <input type='button' className='btn btn-warning' value='Shop Now!' />
                     </div>
                 </div>
-                <div className='container text-center mt-5' style={{height: '300px', marginBottom: '135px'}}>
+                <div className='container text-center mt-5' style={{height: '300px', marginBottom: '195px'}}>
                     <div className="row justify-content-center">
                         <div className="col-11 col-md-12">
                             <h1>
@@ -71,7 +71,7 @@ export default class LandingPage extends React.Component{
                                                     return(
                                                         value.diskon?
                                                             <div className='px-3 py-3'>
-                                                                <div className='bg bg-primary position-relative'>
+                                                                <div className='position-relative'>
                                                                     <Link to={`/detail-product/${value.id}`} >
                                                                         <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
                                                                     </Link>
@@ -79,12 +79,18 @@ export default class LandingPage extends React.Component{
                                                                         {value.diskon}%
                                                                     </span>
                                                                 </div>
-                                                                <div className='text-left'>
+                                                                <div className='text-left mt-4'>
                                                                     <h5 className='funniture-third mt-2' style={{lineHeight: '10px'}}>
                                                                         {value.name}
                                                                     </h5>
-                                                                    <h5>
-                                                                        Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
+                                                                    <p className='funniture-dark-grey'>
+                                                                        Category : {value.category}
+                                                                    </p>
+                                                                    <h5  style={{lineHeight: '10px'}}>
+                                                                        Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} 
+                                                                        <span className='ml-2 funniture-font-size-18 funniture-danger'>
+                                                                            <del>Rp.{value.price.toLocaleString()}</del>
+                                                                        </span>
                                                                     </h5>
                                                                 </div>
                                                             </div>
@@ -100,17 +106,26 @@ export default class LandingPage extends React.Component{
                                                 return(
                                                     value.diskon?
                                                         <div className='px-3 py-3'>
-                                                            <div className='bg bg-primary'>
-                                                                <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
+                                                            <div className='bg bg-primary position-relative'>
+                                                                <Link to={`/detail-product/${value.id}`} >
+                                                                    <img src={value.image1} style={{width: '100%', height: '150px', borderRadius: '5px'}} />
+                                                                </Link>
+                                                                <span className='position-absolute font-weight-bold funniture-bg-danger funniture-light' style={{top: '15px', left: '10px', borderRadius: '5px', width: '50px', height: '25px'}}>
+                                                                    {value.diskon}%
+                                                                </span>
                                                             </div>
-                                                            <div className='text-left'>
-                                                                <h5>
+                                                            <div className='text-left my-3'>
+                                                                <h5 className='funniture-third mt-2' style={{lineHeight: '10px'}}>
                                                                     {value.name}
                                                                 </h5>
-                                                            </div>
-                                                            <div className='text-left'>
-                                                                <h5>
-                                                                    Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} <del>{value.price}</del>
+                                                                <p className='funniture-dark-grey'>
+                                                                    Category : {value.category}
+                                                                </p>
+                                                                <h5  style={{lineHeight: '10px'}}>
+                                                                    Rp.{(value.price - (value.price * (value.diskon / 100))).toLocaleString()} 
+                                                                    <span className='ml-2 funniture-font-size-18 funniture-danger'>
+                                                                        <del>Rp.{value.price.toLocaleString()}</del>
+                                                                    </span>
                                                                 </h5>
                                                             </div>
                                                         </div>

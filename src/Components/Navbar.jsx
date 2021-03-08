@@ -10,11 +10,13 @@ export default class Navbar extends React.Component{
 
     state = {
         username: null,
-        showModal: false
+        showModal: false,
+        totalCarts: 0
     }
 
     componentDidMount(){
         this.getUsername()
+        this.getTotalCarts()
     }
 
     getUsername = () => {
@@ -66,6 +68,18 @@ export default class Navbar extends React.Component{
             localStorage.removeItem('id')
             window.location = '/'
         }
+    }
+
+    getTotalCarts = () => {
+        let id = localStorage.getItem('id')
+
+        Axios.get(`http://localhost:2000/carts?idUSer=${id}`)
+        .then((res) => {
+            this.setState({totalCarts: res.data.length})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     render(){
@@ -138,6 +152,14 @@ export default class Navbar extends React.Component{
                                     </span>
                                     <span className='d-none d-md-block'>
                                         <FontAwesomeIcon icon={faShoppingBag} className='funniture-font-size-22' />
+                                        <span className='funniture-bg-light' style={{width: '100px', borderRadius: '100%'}}>
+                                            {
+                                                this.state.totalCarts?
+                                                    this.state.totalCarts
+                                                :
+                                                    0
+                                            }
+                                        </span>
                                     </span>
                                     <span className='d-block d-md-none'>
                                         <FontAwesomeIcon icon={faBars} className='funniture-font-size-22' />

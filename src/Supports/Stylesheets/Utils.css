@@ -69,6 +69,14 @@
     color: var(--danger)
 }
 
+.funniture-light-grey{
+    color: var(--light-grey)
+}
+
+.funniture-dark-grey{
+    color: var(--dark-grey)
+}
+
 
 
 /* Font-Size */
