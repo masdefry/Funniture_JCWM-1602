@@ -31,7 +31,7 @@
       "name": "Set Sofa Bran 2+1",
       "brand": "Bran",
       "category": "Sofa",
-      "stock": 10,
+      "stock": 7,
       "price": 3266100,
       "diskon": 10,
       "weight": 10000,
@@ -201,29 +201,15 @@
     {
       "idUser": "3",
       "status": "Unpaid",
-      "cretedAt": "09-Mar-2021 10:52:29",
-      "total": 8791100,
+      "cretedAt": "09-Mar-2021 13:21:45",
+      "total": 9798300,
       "detail": [
         {
           "productName": "Set Sofa Bran 2+1",
           "productPrice": 3266100,
           "productDiscount": 10,
-          "productQuantity": 1,
+          "productQuantity": 3,
           "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_sofa_bran_2_1_dudukan.png?auto=format&w=1678&ixlib=react-9.0.3"
-        },
-        {
-          "productName": "Set Kursi Santai Toril",
-          "productPrice": 3300000,
-          "productDiscount": 0,
-          "productQuantity": 1,
-          "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_kursi_santai_toril.jpg?auto=format&h=640&ixlib=react-9.0.3"
-        },
-        {
-          "productName": "Lemari Bufet Tinggi Mikku",
-          "productPrice": 2225000,
-          "productDiscount": 3,
-          "productQuantity": 1,
-          "productImage": "https://cdn-m2.fabelio.com/catalog/product/m/i/mikku-high-sideboard-_9_.jpg?auto=format&h=640&ixlib=react-9.0.3"
         }
       ],
       "id": 1

@@ -146,12 +146,27 @@ export default class Cart extends React.Component{
             detail: detailItems
         }
 
+        // Nge-create Transaction
         axios.post('http://localhost:2000/transactions', dataToSend)
         .then((res) => {
-            this.state.dataCarts.forEach((value) => {
-                axios.delete(`http://localhost:2000/carts/${value.id}`)
+            // Setelah Berhasil Nge-create Transaction > Update Stock Productnya
+            let idTransaction = res.data.id // Id Untuk Redirect ke Halaman Checkout
+
+            this.state.dataCarts.forEach((value, index) => {
+                let stockSebelumnya = this.state.dataProducts[index].stock
+                let stockTerbaru = stockSebelumnya - value.quantity
+
+                axios.patch(`http://localhost:2000/products/${value.idProduct}`, {stock: stockTerbaru})
                 .then((res) => {
-                    console.log(res)
+                    // Setelah Berhasil Update Stock > Delete Data Carts User
+
+                    axios.delete(`http://localhost:2000/carts/${value.id}`)
+                    .then((res) => {
+                        window.location = '/checkout/' + idTransaction 
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 })
                 .catch((err) => {
                     console.log(err)
