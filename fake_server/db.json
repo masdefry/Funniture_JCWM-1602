@@ -31,7 +31,7 @@
       "name": "Set Sofa Bran 2+1",
       "brand": "Bran",
       "category": "Sofa",
-      "stock": 7,
+      "stock": 6,
       "price": 3266100,
       "diskon": 10,
       "weight": 10000,
@@ -44,7 +44,7 @@
       "name": "Set Sofa Mutoyo 2+1",
       "brand": "Mutoyo",
       "category": "Sofa",
-      "stock": 5,
+      "stock": 4,
       "price": 5318100,
       "diskon": 0,
       "weight": 5000,
@@ -57,7 +57,7 @@
       "name": "Set Sofa Hughes 2+1",
       "brand": "Hughes",
       "category": "Sofa",
-      "stock": 5,
+      "stock": 4,
       "price": 6315000,
       "diskon": 5,
       "weight": 25000,
@@ -214,6 +214,55 @@
       ],
       "id": 1,
       "createdAt": "09-Mar-2021 13:33:01"
+    },
+    {
+      "idUser": "3",
+      "status": "Paid",
+      "cretedAt": "09-Mar-2021 14:14:49",
+      "total": 6315000,
+      "detail": [
+        {
+          "productName": "Set Sofa Hughes 2+1",
+          "productPrice": 6315000,
+          "productDiscount": 5,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/h/u/hughes_3_seater_sofa_set__grey__0.jpg?auto=format&w=1678&ixlib=react-9.0.3"
+        }
+      ],
+      "id": 2,
+      "createdAt": "09-Mar-2021 14:14:58"
+    },
+    {
+      "idUser": "3",
+      "status": "Unpaid",
+      "cretedAt": "09-Mar-2021 14:37:16",
+      "total": 5318100,
+      "detail": [
+        {
+          "productName": "Set Sofa Mutoyo 2+1",
+          "productPrice": 5318100,
+          "productDiscount": 0,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/5/4/5472_x_2736_016.jpg?auto=format&w=1678&ixlib=react-9.0.3"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "idUser": "3",
+      "status": "Unpaid",
+      "cretedAt": "09-Mar-2021 14:40:09",
+      "total": 3266100,
+      "detail": [
+        {
+          "productName": "Set Sofa Bran 2+1",
+          "productPrice": 3266100,
+          "productDiscount": 10,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_sofa_bran_2_1_dudukan.png?auto=format&w=1678&ixlib=react-9.0.3"
+        }
+      ],
+      "id": 4
     }
   ]
 }

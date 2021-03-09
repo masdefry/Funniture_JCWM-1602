@@ -21,6 +21,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import allReducer from './Redux/Reducers/index'
+import UserProfile from './Pages/UserProfile'
 
 const store = createStore(allReducer, applyMiddleware(thunk))
 
@@ -39,6 +40,7 @@ export default class App extends React.Component{
               <Route path='/detail-product/:idProduct' component={DetailProduct} />
               <Route path='/cart' component={Cart} />
               <Route path='/checkout' component={Checkout} />
+              <Route path='/user-profile' component={UserProfile} />
             </Switch>
             <Footer />
           </BrowserRouter>
