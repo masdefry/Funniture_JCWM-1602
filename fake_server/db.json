@@ -196,25 +196,37 @@
       "image3": "https://cdn-m2.fabelio.com/catalog/product/k/a/kabinetp_onyx_14_21_hires_1.jpg?auto=format&h=640&ixlib=react-9.0.3"
     }
   ],
-  "carts": [
+  "carts": [],
+  "transactions": [
     {
-      "idProduct": "1",
       "idUser": "3",
-      "quantity": 1,
+      "status": "Unpaid",
+      "cretedAt": "09-Mar-2021 10:52:29",
+      "total": 8791100,
+      "detail": [
+        {
+          "productName": "Set Sofa Bran 2+1",
+          "productPrice": 3266100,
+          "productDiscount": 10,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_sofa_bran_2_1_dudukan.png?auto=format&w=1678&ixlib=react-9.0.3"
+        },
+        {
+          "productName": "Set Kursi Santai Toril",
+          "productPrice": 3300000,
+          "productDiscount": 0,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_kursi_santai_toril.jpg?auto=format&h=640&ixlib=react-9.0.3"
+        },
+        {
+          "productName": "Lemari Bufet Tinggi Mikku",
+          "productPrice": 2225000,
+          "productDiscount": 3,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/m/i/mikku-high-sideboard-_9_.jpg?auto=format&h=640&ixlib=react-9.0.3"
+        }
+      ],
       "id": 1
-    },
-    {
-      "idProduct": "5",
-      "idUser": "3",
-      "quantity": 1,
-      "id": 2
-    },
-    {
-      "idProduct": "12",
-      "idUser": "3",
-      "quantity": 1,
-      "id": 3
     }
-  ],
-  "transactions": []
+  ]
 }

@@ -114,6 +114,55 @@ export default class Cart extends React.Component{
           });
     }
 
+    createTransaction = () => {
+        // Get Id User
+        let idUSer = localStorage.getItem('id')
+
+        // Get Date
+        let date = new Date()
+        date = date.toString()
+
+        let newDate = date.split(' ')[2] + '-' + date.split(' ')[1] + '-' + date.split(' ')[3] + ' ' + date.split(' ')[4]
+        
+        // Get Total Price : Didapat dari state
+        let totalPrice = this.state.totalPrice
+
+        // Get Detail Items
+        let detailItems = this.state.dataCarts.map((value, index) => {
+            return{
+                    productName: this.state.dataProducts[index].name,
+                    productPrice: this.state.dataProducts[index].price,
+                    productDiscount: this.state.dataProducts[index].diskon,
+                    productQuantity: value.quantity,
+                    productImage: this.state.dataProducts[index].image1
+            }
+        })
+
+        const dataToSend = {
+            idUser: idUSer,
+            status: 'Unpaid',
+            cretedAt: newDate,
+            total: totalPrice,
+            detail: detailItems
+        }
+
+        axios.post('http://localhost:2000/transactions', dataToSend)
+        .then((res) => {
+            this.state.dataCarts.forEach((value) => {
+                axios.delete(`http://localhost:2000/carts/${value.id}`)
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render(){
         if(this.state.dataCarts === null || this.state.dataProducts === null){
             return(
@@ -222,7 +271,7 @@ export default class Cart extends React.Component{
                                 </div>
                                 <div className='mt-4'>
                                     <div>
-                                        <input type='button' value='Checkout' className ='w-100 btn btn-primary font-weight-bold' />
+                                        <input type='button' value='Checkout' className ='w-100 btn btn-primary font-weight-bold' onClick={this.createTransaction} />
                                     </div>
                                 </div>
                             </div>
