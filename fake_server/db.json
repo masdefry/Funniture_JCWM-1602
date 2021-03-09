@@ -200,7 +200,7 @@
   "transactions": [
     {
       "idUser": "3",
-      "status": "Unpaid",
+      "status": "Paid",
       "cretedAt": "09-Mar-2021 13:21:45",
       "total": 9798300,
       "detail": [
@@ -212,7 +212,8 @@
           "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_sofa_bran_2_1_dudukan.png?auto=format&w=1678&ixlib=react-9.0.3"
         }
       ],
-      "id": 1
+      "id": 1,
+      "createdAt": "09-Mar-2021 13:33:01"
     }
   ]
 }

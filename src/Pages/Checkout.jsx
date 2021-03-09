@@ -4,6 +4,7 @@ import swal from 'sweetalert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import axios from "axios";
 
 export default class Checkout extends React.Component{
 
@@ -21,6 +22,25 @@ export default class Checkout extends React.Component{
         Axios.get(`http://localhost:2000/transactions/${idTransaction}`)
         .then((res) => {
             this.setState({dataTransaction: res.data})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+    payment = () => {
+        // Get Id Transaction
+        let idTransaction = this.props.location.pathname.split('/')[2]
+
+         // Get Date
+         let date = new Date()
+         date = date.toString()
+ 
+         let newDate = date.split(' ')[2] + '-' + date.split(' ')[1] + '-' + date.split(' ')[3] + ' ' + date.split(' ')[4]
+
+        axios.patch(`http://localhost:2000/transactions/${idTransaction}`, {status: 'Paid', createdAt: newDate})
+        .then((res) => {
+            console.log(res)
         })
         .catch((err) => {
             console.log(err)
@@ -107,7 +127,7 @@ export default class Checkout extends React.Component{
                                         <p className="card-text">Bisa bayar penuh atau cicilan</p>
                                     </div>
                                 </div>
-                                <button type="button" className="btn btn-success h-50">Bayar Sekarang</button>
+                                <button type="button" className="btn btn-success h-50" onClick={this.payment}>Bayar Sekarang</button>
                             </div>
                         </div>
                     </div>
