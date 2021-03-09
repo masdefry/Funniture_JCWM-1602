@@ -99,7 +99,7 @@ export default class Cart extends React.Component{
                         button: "Ok",
                     });
 
-                    this.getDataCarts()
+                    window.location = '/cart'
                 })
                 .catch((err) => {
                     swal({
@@ -125,11 +125,10 @@ export default class Cart extends React.Component{
             <>
                 <div className = 'bg-light'>
                     <div className ='container'>
-                        <div className = 'row d-flex'>
+                        <div className = 'row'>
 
-                            {/* row kiri */}
                             <div className='col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8'>
-                                <div className='p-2 bg-white my-5'>
+                                <div className='p-2 my-5 bg-white' style={{borderRadius: '3px'}}>
                                     <div className='col-12 mt-3'>
                                         <h3>
                                             Shopping Cart
@@ -139,30 +138,47 @@ export default class Cart extends React.Component{
                                     {
                                         this.state.dataCarts.map((value, index) => {
                                             return(
-                                                <div className='row my-5'>
-                                                    <div className ='col-4 '>
-                                                        <img src={this.state.dataProducts[index].image1} className='ml-3' style={{height:'100%', width:'100%'}} />
+                                                <div className='row px-0 py-3 mt-4 mb-4'>
+                                                    <div className ='col-4'>
+                                                        <img src={this.state.dataProducts[index].image1} className='ml-3' style={{width:'100%'}} />
                                                     </div>
                                                     <div className ='col-8'>
-                                                        <div className='ml-3'>
-                                                            <h4>{this.state.dataProducts[index].name}</h4>
-                                                            <h5>Rp.{this.state.dataProducts[index].price.toLocaleString()}</h5>
-                                                        </div>
-                                                        <div>
-                                                            <button disabled={value.quantity === 1? true : false} className='btn btn-warning px-1' onClick={() => this.updateQuantityProduct('Minus', value.id, value.quantity)}>
-                                                                -
-                                                            </button>
-                                                            <span className='mx-4'>
-                                                                {value.quantity}
-                                                            </span>
-                                                            <button disabled={value.quantity === this.state.dataProducts[index].stock? true : false} className='btn btn-warning px-1' onClick={() => this.updateQuantityProduct('Plus', value.id, value.quantity)}>
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                        <div className='mt-3'>
-                                                            <button className='btn btn-danger px-1' onClick={() => this.deleteProduct(value.id)}>
-                                                                Delete
-                                                            </button>
+                                                        <div className="ml-3">
+                                                            <div>
+                                                                <h4 className='funniture-third' style={{lineHeight: '6px'}}>
+                                                                    {this.state.dataProducts[index].name}
+                                                                </h4>
+                                                                <p className='funniture-font-size-12'>
+                                                                    Discount : 
+                                                                    <span className='ml-1'>
+                                                                        {
+                                                                            this.state.dataProducts[index].diskon
+                                                                        }
+                                                                    </span>
+                                                                    %
+                                                                </p>
+                                                                <h4 style={{lineHeight: '5px'}}>
+                                                                    Rp.{this.state.dataProducts[index].price.toLocaleString()}
+                                                                </h4>
+                                                            </div>
+                                                            <div className='d-flex justify-content-between mt-4'>
+                                                                <div>
+                                                                    <button disabled={value.quantity === 1? true : false} className='btn btn-warning px-2 font-weight-bold' onClick={() => this.updateQuantityProduct('Minus', value.id, value.quantity)}>
+                                                                        -
+                                                                    </button>
+                                                                    <span className='mx-4'>
+                                                                        {value.quantity}
+                                                                    </span>
+                                                                    <button disabled={value.quantity === this.state.dataProducts[index].stock? true : false} className='btn btn-warning px-1 font-weight-bold' onClick={() => this.updateQuantityProduct('Plus', value.id, value.quantity)}>
+                                                                        +
+                                                                    </button>
+                                                                </div>
+                                                                <div className='mr-3'>
+                                                                    <button className='btn btn-outline-secondary px-2 funniture-font-size-10' onClick={() => this.deleteProduct(value.id)}>
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -172,45 +188,42 @@ export default class Cart extends React.Component{
                                 </div>
                             </div>
 
-                            {/* row kanan */}
                             <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 ' style={{height: '400px'}}>
-                                <div className='p-2 bg-white mt-5'>
+                                <div className='p-4 mt-0 mt-md-5 bg-white' style={{borderRadius: '3px'}}>
                                     <div className='col-12 mt-3'>
-                                            <h3>
-                                                Order Summary
-                                            </h3>
-                                            <hr/>
-                                            <div className ='d-flex justify-content-between my-2'>
-                                                <div>
-                                                    Items Total
-                                                </div>
-                                                <div>
-                                                    {this.state.totalItem} Item
-                                                </div>
+                                        <h5>
+                                            Order Summary
+                                        </h5>
+                                        <hr/>
+                                        <div className ='d-flex justify-content-between my-2'>
+                                            <div>
+                                                Total Items :
                                             </div>
-                                            <hr/>
+                                            <div>
+                                                {this.state.totalItem} Item
+                                            </div>
+                                        </div>
+                                        <hr/>
                                     </div>
-                                    <div className='col-12'>
+                                    <div className='col-12 mb-3'>
                                         <div className='d-flex justify-content-between'>
                                             <div>
-                                                <h5>Order Total</h5>
+                                                <h5>
+                                                    Total : 
+                                                </h5>
                                             </div>
                                             <div>
-                                                <h5>Rp{this.state.totalPrice.toLocaleString()}</h5>
+                                                <h5 className='font-weight-bold'>
+                                                    Rp.{this.state.totalPrice.toLocaleString()}
+                                                </h5>
                                             </div>
                                         </div> 
                                     </div> 
-                                    
-                                    {/* Button here */}
-                                    
                                 </div>
-                                <div className ='d-flex justify-content-center mt-4'>
-                                        <div>
-                                            <input type='button' value='Continue Shopping' className ='btn btn-outline-dark' />
-                                        </div>
-                                        <div className = 'ml-3'>
-                                            <input type='button' value='Checkout' className ='btn btn-warning' />
-                                        </div>
+                                <div className='mt-4'>
+                                    <div>
+                                        <input type='button' value='Checkout' className ='w-100 btn btn-primary font-weight-bold' />
+                                    </div>
                                 </div>
                             </div>
                         </div>

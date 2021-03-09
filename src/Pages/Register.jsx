@@ -4,15 +4,34 @@ import EmailValidator from './../Supports/Functions/Email'
 import Axios from 'axios';
 import LinkAPI from './../Supports/Constants/LinkAPI'
 
+// IMPORT FUNCTION
+import checkUserLogin from './../Supports/Functions/CheckUserLogin'
+
 export default class Register extends React.Component{
 
     state = {
         error: null,
         phoneNumber: null,
         email: null,
-        buttonDisabled: true
+        buttonDisabled: true,
+        isUserLogin: false
     }
 
+    componentDidMount(){
+        this.onCheckUserLogin()
+    }
+
+    onCheckUserLogin = () => {
+        let id = localStorage.getItem('id')
+
+        let result = checkUserLogin(id)
+
+        this.setState({isUserLogin: result})
+
+        if(result === true){
+            window.location = '/'
+        }
+    }
 
     submitRegister = () => {
         let inputUser = this.refs.inputUser.value

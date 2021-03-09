@@ -12,7 +12,8 @@ class Navbar extends React.Component{
     state = {
         username: null,
         showModal: false,
-        currentTotalCarts: 0
+        currentTotalCarts: 0,
+        showPassword: false
     }
 
     componentDidMount(){
@@ -74,13 +75,16 @@ class Navbar extends React.Component{
     getCurrentTotalCarts = () => {
         let id = localStorage.getItem('id')
 
-        Axios.get(`http://localhost:2000/carts?idUSer=${id}`)
-        .then((res) => {
-            this.setState({currentTotalCarts: res.data.length})
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        if(id !== null){
+            Axios.get(`http://localhost:2000/carts?idUSer=${id}`)
+            .then((res) => {
+                this.setState({currentTotalCarts: res.data.length})
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
     }
 
     render(){
@@ -187,7 +191,10 @@ class Navbar extends React.Component{
                             <input type='text' ref='inputLogin' placeholder='Phone Number / Email' className='form form-control' />
                         </div>
                         <div className='my-4'>
-                            <input type='password' ref='inputPasswordLogin' placeholder='Password' className='form form-control' />
+                            <input type={this.state.showPassword === false? 'password' : 'text'} ref='inputPasswordLogin' placeholder='Password' className='form form-control' />
+                            <p onClick={() => this.setState({showPassword: !this.state.showPassword})}>
+                                Lihat Password
+                            </p>
                         </div>
                         <div>
                             <input type='button' value='Login' className='btn btn-warning w-100' onClick={this.onLogin} />

@@ -2,6 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux'
 
+// IMPORT FUNCTION
+import checkUserLogin from './../Supports/Functions/CheckUserLogin'
+
 // ACTION REDUX
 import { getDataCart } from './../Redux/Actions/CartAction'
 
@@ -21,11 +24,8 @@ class DetailProduct extends React.Component{
     onCheckUserLogin = () => {
         let id = localStorage.getItem('id')
 
-        if(id){
-            this.setState({isUserLogin: true})
-        }else{
-            this.setState({isUserLogin: false})
-        }
+        let result = checkUserLogin(id)
+        this.setState({isUserLogin: result})
     }
 
     getDataProduct = () => {
