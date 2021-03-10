@@ -57,7 +57,7 @@
       "name": "Set Sofa Hughes 2+1",
       "brand": "Hughes",
       "category": "Sofa",
-      "stock": 4,
+      "stock": 3,
       "price": 6315000,
       "diskon": 5,
       "weight": 25000,
@@ -250,7 +250,7 @@
     },
     {
       "idUser": "3",
-      "status": "Unpaid",
+      "status": "Paid",
       "cretedAt": "09-Mar-2021 14:40:09",
       "total": 3266100,
       "detail": [
@@ -262,11 +262,12 @@
           "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_sofa_bran_2_1_dudukan.png?auto=format&w=1678&ixlib=react-9.0.3"
         }
       ],
-      "id": 4
+      "id": 4,
+      "createdAt": "10-Mar-2021 11:17:51"
     },
     {
       "idUser": "3",
-      "status": "Unpaid",
+      "status": "Paid",
       "cretedAt": "10-Mar-2021 04:59:05",
       "total": 4211100,
       "detail": [
@@ -285,7 +286,25 @@
           "productImage": "https://cdn-m2.fabelio.com/catalog/product/6/1/6170.jpg?auto=format&h=640&ixlib=react-9.0.3"
         }
       ],
-      "id": 5
+      "id": 5,
+      "createdAt": "10-Mar-2021 11:12:26"
+    },
+    {
+      "idUser": "3",
+      "status": "Paid",
+      "cretedAt": "10-Mar-2021 11:00:50",
+      "total": 6315000,
+      "detail": [
+        {
+          "productName": "Set Sofa Hughes 2+1",
+          "productPrice": 6315000,
+          "productDiscount": 5,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/h/u/hughes_3_seater_sofa_set__grey__0.jpg?auto=format&w=1678&ixlib=react-9.0.3"
+        }
+      ],
+      "id": 6,
+      "createdAt": "10-Mar-2021 11:15:39"
     }
   ]
 }

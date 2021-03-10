@@ -141,7 +141,7 @@ export default class Cart extends React.Component{
         const dataToSend = {
             idUser: idUSer,
             status: 'Unpaid',
-            cretedAt: newDate,
+            createdAt: newDate,
             total: totalPrice,
             detail: detailItems
         }

@@ -39,7 +39,7 @@ export default class App extends React.Component{
               <Route path='/products' component={CatalogProducts} />
               <Route path='/detail-product/:idProduct' component={DetailProduct} />
               <Route path='/cart' component={Cart} />
-              <Route path='/checkout' component={Checkout} />
+              <Route path='/checkout/:idTransaction' component={Checkout} />
               <Route path='/user-profile' component={UserProfile} />
             </Switch>
             <Footer />

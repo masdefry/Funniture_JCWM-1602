@@ -18,7 +18,7 @@ export default class UserProfile extends React.Component{
                 <div className='container my-5'>
                     <div className="row">
                         <div className="col-12">
-                            <Link to='/user-profile/profile'>
+                            <Link to='/user-profile'>
                                 <button type="button" class="btn btn-warning" onClick={() => this.setState({isRefresh: true})} style={{borderRadius: '50px'}}>Profile</button>
                             </Link>
                             <Link to='/user-profile/transaction-history'>
@@ -31,8 +31,7 @@ export default class UserProfile extends React.Component{
                         </div>
                         <div className='col-12'>
                             <Switch>
-                                <Route exact path='/' component={LandingPage} />
-                                <Route path='/user-profile/profile' component={Profile} />
+                                <Route exact path='/user-profile' component={Profile} />
                                 <Route path='/user-profile/transaction-history' component={TransactionHistory} />
                             </Switch>
                         </div>

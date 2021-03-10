@@ -144,9 +144,11 @@ class Navbar extends React.Component{
                                     </span>
                                     {
                                         this.state.username?
-                                            <span className='d-none d-md-block'>
-                                                <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
-                                            </span>
+                                            <Link to='/user-profile' className='funniture-link'>    
+                                                <span className='d-none d-md-block'>
+                                                    <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />
+                                                </span>
+                                            </Link>
                                         :
                                             <span className='d-none d-md-block' onClick={() => this.setState({showModal: true})}>
                                                 <FontAwesomeIcon icon={faUser} className='funniture-font-size-22' />

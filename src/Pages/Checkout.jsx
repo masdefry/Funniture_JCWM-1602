@@ -2,6 +2,7 @@ import React from "react"
 import Axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import swal from 'sweetalert';
 
 export default class Checkout extends React.Component{
 
@@ -37,7 +38,14 @@ export default class Checkout extends React.Component{
 
         Axios.patch(`http://localhost:2000/transactions/${idTransaction}`, {status: 'Paid', createdAt: newDate})
         .then((res) => {
-            console.log(res)
+            swal({
+                title: "Payment Success!",
+                icon: "success",
+                button: "Ok",
+            });
+
+            setTimeout(function(){ window.location = '/user-profile/transaction-history' }, 5000);
+            
         })
         .catch((err) => {
             console.log(err)
@@ -216,9 +224,9 @@ export default class Checkout extends React.Component{
                                     <div className="col-12 px-0 py-0 mx-0 my-3">
                                         {
                                             this.state.dataTransaction?
-                                                <input type="button" value="Pay My Orders" onClick={this.onPayment} className="btn btn-primary rounded-0 w-100 py-2"/>
+                                                <input type="button" value="Pay My Orders" onClick={this.payment} className="btn btn-primary rounded-0 w-100 py-2"/>
                                             :
-                                                <input type="button" disabled value="Pay My Orders" onClick={this.onPayment} className="btn btn-primary rounded-0 w-100 py-2"/>
+                                                <input type="button" disabled value="Pay My Orders" onClick={this.payment} className="btn btn-primary rounded-0 w-100 py-2"/>
                                         }
                                     </div>
                                 </div>

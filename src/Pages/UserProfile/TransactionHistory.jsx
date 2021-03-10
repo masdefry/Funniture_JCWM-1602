@@ -24,6 +24,10 @@ export default class TransactionHistory extends React.Component{
         })
     }
 
+    redirectPayment = (idTransaction) => {
+        window.location = '/checkout/' + idTransaction
+    }
+
     render(){
         if(this.state.dataTransaction === null){
             return(
@@ -53,7 +57,7 @@ export default class TransactionHistory extends React.Component{
                                 <div className="col-4 text-right">
                                     {
                                         value.status === 'Unpaid'?
-                                            <input type='button' value='Pay Now' className='btn btn-primary' />
+                                            <input type='button' value='Pay Now' className='btn btn-primary' onClick={() => this.redirectPayment(value.id)} />
                                         :
                                             null
                                     }
