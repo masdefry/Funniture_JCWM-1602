@@ -31,7 +31,7 @@
       "name": "Set Sofa Bran 2+1",
       "brand": "Bran",
       "category": "Sofa",
-      "stock": 6,
+      "stock": 5,
       "price": 3266100,
       "diskon": 10,
       "weight": 10000,
@@ -122,7 +122,7 @@
       "name": "Meja Tamu Tromso",
       "brand": "Tromso",
       "category": "Meja Tamu",
-      "stock": 15,
+      "stock": 14,
       "price": 945000,
       "diskon": 0,
       "weight": 2000,
@@ -263,6 +263,29 @@
         }
       ],
       "id": 4
+    },
+    {
+      "idUser": "3",
+      "status": "Unpaid",
+      "cretedAt": "10-Mar-2021 04:59:05",
+      "total": 4211100,
+      "detail": [
+        {
+          "productName": "Set Sofa Bran 2+1",
+          "productPrice": 3266100,
+          "productDiscount": 10,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/s/e/set_sofa_bran_2_1_dudukan.png?auto=format&w=1678&ixlib=react-9.0.3"
+        },
+        {
+          "productName": "Meja Tamu Tromso",
+          "productPrice": 945000,
+          "productDiscount": 0,
+          "productQuantity": 1,
+          "productImage": "https://cdn-m2.fabelio.com/catalog/product/6/1/6170.jpg?auto=format&h=640&ixlib=react-9.0.3"
+        }
+      ],
+      "id": 5
     }
   ]
 }
