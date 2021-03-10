@@ -286,7 +286,12 @@ export default class Cart extends React.Component{
                                 </div>
                                 <div className='mt-4'>
                                     <div>
-                                        <input type='button' value='Checkout' className ='w-100 btn btn-primary font-weight-bold' onClick={this.createTransaction} />
+                                        {
+                                            this.state.dataCarts.length === 0?
+                                                null
+                                            :    
+                                                <input type='button' value='Checkout' className ='w-100 btn btn-primary font-weight-bold' onClick={this.createTransaction} />
+                                        }
                                     </div>
                                 </div>
                             </div>

@@ -15,11 +15,17 @@ export default class Checkout extends React.Component{
     }
 
     getDataTransaction = () => {
+        let idUserLocalStorage = localStorage.getItem('id')
         let idTransaction = this.props.location.pathname.split('/')[2]
 
         Axios.get(`http://localhost:2000/transactions/${idTransaction}`)
         .then((res) => {
-            this.setState({dataTransaction: res.data})
+            // Apakah Transaksi Milik User Itu Sendiri?
+            if(res.data.idUser === idUserLocalStorage){
+                this.setState({dataTransaction: res.data})
+            }else{
+                window.history.back();
+            }
         })
         .catch((err) => {
             console.log(err)

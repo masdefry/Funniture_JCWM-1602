@@ -41,7 +41,7 @@ export default class TransactionHistory extends React.Component{
                 {
                     this.state.dataTransaction.map((value, index) => {
                         return(
-                            <div className="row shadow py-4 mb-3">
+                            <div className="row shadow py-4 mb-4" style={{borderRadius: '5px'}}>
                                 <div className="col-4">
                                     <h5 style={{lineHeight: '5px'}}>Status :</h5>
                                     <p>{value.status}</p>
