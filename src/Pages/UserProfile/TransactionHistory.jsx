@@ -41,13 +41,13 @@ export default class TransactionHistory extends React.Component{
                 {
                     this.state.dataTransaction.map((value, index) => {
                         return(
-                            <div className="row shadow py-4 mb-4" style={{borderRadius: '5px'}}>
+                            <div className="row container justify-content-center shadow pt-5 pb-5 mb-4" style={{borderRadius: '5px'}}>
                                 <div className="col-4">
                                     <h5 style={{lineHeight: '5px'}}>Status :</h5>
-                                    <p>{value.status}</p>
+                                    <h5>{value.status}</h5>
                                 </div>
                                 <div className="col-4 text-center border-left border-right">
-                                    <p>
+                                    <p className='font-weight-bold' style={{lineHeight: '0px'}}>
                                         INV/3102021/1
                                     </p>
                                     <p>
@@ -57,20 +57,20 @@ export default class TransactionHistory extends React.Component{
                                 <div className="col-4 text-right">
                                     {
                                         value.status === 'Unpaid'?
-                                            <input type='button' value='Pay Now' className='btn btn-primary' onClick={() => this.redirectPayment(value.id)} />
+                                            <input type='button' value='Pay' className='btn btn-primary px-5 py-1' onClick={() => this.redirectPayment(value.id)} />
                                         :
-                                            null
+                                            <input type='button' disabled value='Paid' className='btn btn-dark px-5 py-1' onClick={() => this.redirectPayment(value.id)} />
                                     }
                                 </div>
                                 {
                                     value.detail.map((value, index) => {
                                         return(
                                             <>
-                                                <div className="col-2 mt-3 mb-4">
+                                                <div className="col-2 mt-2">
                                                     {/* Image */}
                                                     <img src={value.productImage} width='100px' height='50px' />
                                                 </div>
-                                                <div className="col-6 mt-3 mb-4">
+                                                <div className="col-6 mt-3">
                                                     {/* Detail Product */}
                                                     <h6 style={{lineHeight: '5px'}}>
                                                         {
@@ -81,12 +81,12 @@ export default class TransactionHistory extends React.Component{
                                                         {value.productQuantity} Item x Rp.{value.productPrice.toLocaleString('id-ID')}
                                                     </p>
                                                 </div>
-                                                <div className="col-4 text-right mt-3 mb-4">
+                                                <div className="col-4 text-right mt-3">
                                                     {/* Total Price Per-Product */}
-                                                    <p>
+                                                    <p style={{lineHeight: '0px'}}>
                                                         Total Belanja
                                                     </p>
-                                                    <h6>
+                                                    <h6 className='font-weight-bold'>
                                                         Rp.{(value.productQuantity * value.productPrice).toLocaleString('id-ID')}
                                                     </h6>
                                                 </div>

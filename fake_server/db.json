@@ -234,7 +234,7 @@
     },
     {
       "idUser": "3",
-      "status": "Unpaid",
+      "status": "Paid",
       "cretedAt": "09-Mar-2021 14:37:16",
       "total": 5318100,
       "detail": [
@@ -246,7 +246,8 @@
           "productImage": "https://cdn-m2.fabelio.com/catalog/product/5/4/5472_x_2736_016.jpg?auto=format&w=1678&ixlib=react-9.0.3"
         }
       ],
-      "id": 3
+      "id": 3,
+      "createdAt": "15-Mar-2021 23:50:28"
     },
     {
       "idUser": "3",
