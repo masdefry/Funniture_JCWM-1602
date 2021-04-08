@@ -25,6 +25,7 @@ import UserProfile from './Pages/UserProfile'
 
 // ADMIN PAGES
 import ProductManagement from './Pages/Admin/ProductManagement'
+import ProductManagementDetail from './Pages/Admin/ProductManagementDetail'
 
 const store = createStore(allReducer, applyMiddleware(thunk))
 
@@ -45,6 +46,7 @@ export default class App extends React.Component{
               <Route path='/checkout/:idTransaction' component={Checkout} />
               <Route path='/user-profile' component={UserProfile} />
               <Route path='/product-management' component={ProductManagement} />
+              <Route path='/product-management-detail/:idProduct' component={ProductManagementDetail} />
             </Switch>
             <Footer />
           </BrowserRouter>

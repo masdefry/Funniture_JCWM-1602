@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 class ProductManagement extends React.Component{
 
@@ -64,7 +65,9 @@ class ProductManagement extends React.Component{
                                         <td>{value.discount}</td>
                                         <td>{value.weight}</td>
                                         <td>
-                                            <FontAwesomeIcon icon={faSearch} className='funniture-font-size-22' />
+                                            <Link to={`/product-management-detail/${value.id}`}>
+                                                <FontAwesomeIcon icon={faSearch} className='funniture-font-size-22' />
+                                            </Link>
                                             <FontAwesomeIcon icon={faTrash} className='funniture-font-size-22 mx-3' />
                                             <FontAwesomeIcon icon={faEdit} className='funniture-font-size-22' />
                                         </td>
