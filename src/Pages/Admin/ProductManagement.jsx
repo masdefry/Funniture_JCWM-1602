@@ -1,14 +1,43 @@
 import React from 'react'
+import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 class ProductManagement extends React.Component{
+
+    state = {
+        data: null
+    }
+
+    componentDidMount(){
+        this.getData()
+    }
+
+
+    getData = () => {
+        axios.get('http://localhost:5000/products')
+        .then((res) => {
+            this.setState({data: res.data})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render(){
+        if(this.state.data === null){
+            return(
+                <div className="container">
+                    Loading . . .
+                </div>
+            )
+        }
+
         return(
             <div className="container">
-                <table class="table my-5">
-                    <thead class="thead-dark">
+                <table className="table my-5">
+                    <thead className="thead-dark">
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Product Name</th>
@@ -22,21 +51,27 @@ class ProductManagement extends React.Component{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Sofa</td>
-                            <td>Olympic</td>
-                            <td>1</td>
-                            <td>100</td>
-                            <td>1000000</td>
-                            <td>90%</td>
-                            <td>1000</td>
-                            <td>
-                                <FontAwesomeIcon icon={faSearch} className='funniture-font-size-22' />
-                                <FontAwesomeIcon icon={faTrash} className='funniture-font-size-22 mx-3' />
-                                <FontAwesomeIcon icon={faEdit} className='funniture-font-size-22' />
-                            </td>
-                        </tr>
+                        {
+                            this.state.data.map((value, index) => {
+                                return(
+                                    <tr>
+                                        <th scope="row">{value.id}</th>
+                                        <td>{value.name}</td>
+                                        <td>{value.brand}</td>
+                                        <td>{value.category}</td>
+                                        <td>{value.stock}</td>
+                                        <td>{value.price}</td>
+                                        <td>{value.discount}</td>
+                                        <td>{value.weight}</td>
+                                        <td>
+                                            <FontAwesomeIcon icon={faSearch} className='funniture-font-size-22' />
+                                            <FontAwesomeIcon icon={faTrash} className='funniture-font-size-22 mx-3' />
+                                            <FontAwesomeIcon icon={faEdit} className='funniture-font-size-22' />
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
