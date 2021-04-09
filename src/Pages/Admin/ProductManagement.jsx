@@ -4,15 +4,19 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import {Modal, ModalBody} from 'reactstrap'
 
 class ProductManagement extends React.Component{
 
     state = {
-        data: null
+        data: null,
+        category: null,
+        showModal: false
     }
 
     componentDidMount(){
         this.getData()
+        this.getDataCategory()
     }
 
 
@@ -26,8 +30,18 @@ class ProductManagement extends React.Component{
         })
     }
 
+    getDataCategory = () => {
+        axios.get('http://localhost:5000/category-product')
+        .then((res) => {
+            this.setState({category: res.data})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render(){
-        if(this.state.data === null){
+        if(this.state.data === null || this.state.category === null){
             return(
                 <div className="container">
                     Loading . . .
@@ -37,7 +51,10 @@ class ProductManagement extends React.Component{
 
         return(
             <div className="container">
-                <table className="table my-5">
+                <div className='mt-3'>
+                    <input type='button' value='Tambah Data' onClick={() => this.setState({showModal: true})} className='btn btn-warning' />
+                </div>
+                <table className="table mt-3 mb-5">
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">Id</th>
@@ -77,6 +94,48 @@ class ProductManagement extends React.Component{
                         }
                     </tbody>
                 </table>
+
+                <Modal toggle={() => this.setState({showModal: false})} isOpen={this.state.showModal}>
+                    <ModalBody>
+                        <div className='mt-3'>
+                            <h3>
+                                Tambah Data
+                            </h3>
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Name of Product' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Brand of Product' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <select className="form-control mb-3">
+                                {
+                                    this.state.category.map((value, index) => {
+                                        return(
+                                            <option key={index}>{value.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Stock of Product' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Price of Product' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Discount of Product' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Weight of Product' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <input type='button' value='Submit Data' className='btn btn-primary w-100 mb-3' />
+                        </div>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }
