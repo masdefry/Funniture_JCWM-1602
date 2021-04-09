@@ -23,10 +23,10 @@ class ProductManagement extends React.Component{
     getData = () => {
         axios.get('http://localhost:5000/products')
         .then((res) => {
-            this.setState({data: res.data})
+            this.setState({data: res.data.data})
         })
         .catch((err) => {
-            console.log(err)
+            alert(err.response.data.message)
         })
     }
 
