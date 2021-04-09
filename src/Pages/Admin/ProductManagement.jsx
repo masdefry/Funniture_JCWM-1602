@@ -57,12 +57,11 @@ class ProductManagement extends React.Component{
 
         axios.post('http://localhost:5000/post-data-product', dataToSend)
         .then((res) => {
-            console.log(res)
+            alert(res.data.message)
+            window.location = '/'
         })
         .catch((err) => {
-            if(err.response.data.error === true){
-                alert(err.response.data.message)
-            }
+            alert(err.response.data.message)
         })
     }
 
