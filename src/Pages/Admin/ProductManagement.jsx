@@ -40,6 +40,32 @@ class ProductManagement extends React.Component{
         })
     }
 
+    onSubmitData = () => {
+
+        let dataToSend = {
+            name: this.name.value,
+            brand: this.brand.value,
+            category: this.category.value,
+            stock: this.stock.value,
+            price: this.price.value,
+            discount: this.discount.value,
+            weight: this.weight.value,
+            image1: this.image1.value,
+            image2: this.image2.value,
+            image3: this.image3.value
+        }
+
+        axios.post('http://localhost:5000/post-data-product', dataToSend)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            if(err.response.data.error === true){
+                alert(err.response.data.message)
+            }
+        })
+    }
+
     render(){
         if(this.state.data === null || this.state.category === null){
             return(
@@ -103,36 +129,42 @@ class ProductManagement extends React.Component{
                             </h3>
                         </div>
                         <div>
-                            <input type='text' placeholder='Name of Product' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.name = e} placeholder='Name of Product' className='form form-control mb-3' />
                         </div>
                         <div>
-                            <input type='text' placeholder='Brand of Product' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.brand = e} placeholder='Brand of Product' className='form form-control mb-3' />
                         </div>
                         <div>
-                            <select className="form-control mb-3">
+                            <select ref={(e) => this.category = e} className="form-control mb-3">
                                 {
                                     this.state.category.map((value, index) => {
                                         return(
-                                            <option key={index}>{value.name}</option>
+                                            <option key={index} value={value.id}>{value.name}</option>
                                         )
                                     })
                                 }
                             </select>
                         </div>
                         <div>
-                            <input type='text' placeholder='Stock of Product' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.stock = e} placeholder='Stock of Product' className='form form-control mb-3' />
                         </div>
                         <div>
-                            <input type='text' placeholder='Price of Product' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.price = e} placeholder='Price of Product' className='form form-control mb-3' />
                         </div>
                         <div>
-                            <input type='text' placeholder='Discount of Product' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.discount = e} placeholder='Discount of Product' className='form form-control mb-3' />
                         </div>
                         <div>
-                            <input type='text' placeholder='Weight of Product' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.weight = e} placeholder='Weight of Product' className='form form-control mb-3' />
                         </div>
                         <div>
-                            <input type='button' value='Submit Data' className='btn btn-primary w-100 mb-3' />
+                            <h5>Image URL</h5>
+                            <input type='text' ref={(e) => this.image1 = e} placeholder='Image URL 1' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.image2 = e} placeholder='Image URL 2' className='form form-control mb-3' />
+                            <input type='text' ref={(e) => this.image3 = e} placeholder='Image URL 3' className='form form-control mb-3' />
+                        </div>
+                        <div>
+                            <input type='button' onClick={() => this.onSubmitData()} value='Submit Data' className='btn btn-primary w-100 mb-3' />
                         </div>
                     </ModalBody>
                 </Modal>
